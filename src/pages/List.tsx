@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import { useState } from "react";
 import styles from "./List.module.scss";
-import { QuestionCard } from "../components/QuestionCard";
+import { QuestionCard } from "@/components/QuestionCard/QuestionCard";
 
 export const List: FC = () => {
   const [questionList, setQuestionList] = useState([
