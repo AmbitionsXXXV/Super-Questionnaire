@@ -10,7 +10,6 @@ type PropsType = {
 };
 
 export const QuestionCard: FC<PropsType> = ({
-  _id,
   title,
   createAt,
   answerCount,
