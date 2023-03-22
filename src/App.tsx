@@ -1,10 +1,10 @@
-import { List } from "@/pages/List";
+import { RouterProvider } from "react-router-dom";
+import router from "@/router";
 
 function App() {
   return (
     <div className="App">
-      <h2 style={{ backgroundColor: "pink", textAlign: "center" }}>问卷</h2>
-      <List />
+      <RouterProvider router={router}></RouterProvider>
     </div>
   );
 }

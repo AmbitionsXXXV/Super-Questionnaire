@@ -1,9 +1,9 @@
 import type { FC } from "react";
 import { useState } from "react";
-import styles from "./List.module.scss";
+import styles from "./index.module.scss";
 import { QuestionCard } from "@/components/QuestionCard/QuestionCard";
 
-export const List: FC = () => {
+const List: FC = () => {
   const [questionList, setQuestionList] = useState([
     {
       _id: "q1",
@@ -49,7 +49,8 @@ export const List: FC = () => {
           return <QuestionCard key={_id} {...q} />;
         })}
       </div>
-      <div className={styles.footer}>footer</div>
+      <div className={styles.footer}>List Footer</div>
     </>
   );
 };
+export default List;
