@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@types/react-router-dom": "^5.3.3",
+    "ahooks": "^3.7.5",
     "normalize.css": "^8.0.1",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.9.0"
