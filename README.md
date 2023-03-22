@@ -2,4 +2,6 @@
 
 ```shell
 pnpm install
+# start project
+pnpm dev
 ```
