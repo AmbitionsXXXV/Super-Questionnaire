@@ -1,9 +1,11 @@
 import type { FC } from "react";
 import { useState } from "react";
 import styles from "./index.module.scss";
+import { useTitle } from "ahooks";
 import { QuestionCard } from "@/components/QuestionCard/QuestionCard";
 
 const List: FC = () => {
+  useTitle("超级问卷-我的问卷");
   const [questionList, setQuestionList] = useState([
     {
       _id: "q1",
