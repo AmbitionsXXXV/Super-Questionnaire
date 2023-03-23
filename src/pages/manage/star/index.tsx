@@ -4,51 +4,19 @@ import styles from "../index.module.scss";
 import { useTitle } from "ahooks";
 import { QuestionCard } from "@/components/QuestionCard/QuestionCard";
 import { Empty, Typography } from "antd";
+import { data } from "@/data/data";
 
 const { Title } = Typography;
 
 const Star: FC = () => {
   useTitle("我的问卷 - 星标问卷");
-  const [questionList, setQuestionList] = useState([
-    {
-      _id: "q1",
-      title: "问卷1",
-      isPublished: false,
-      isStar: true,
-      answerCount: 4,
-      createdAt: "3月20号 23:11"
-    },
-    {
-      _id: "q2",
-      title: "问卷2",
-      isPublished: true,
-      isStar: false,
-      answerCount: 3,
-      createdAt: "3月9号 24:11"
-    },
-    {
-      _id: "q3",
-      title: "问卷3",
-      isPublished: false,
-      isStar: true,
-      answerCount: 4,
-      createdAt: "3月20号 3:11"
-    },
-    {
-      _id: "q4",
-      title: "问卷4",
-      isPublished: true,
-      isStar: false,
-      answerCount: 8,
-      createdAt: "3月21号 2:11"
-    }
-  ]);
+  const [questionList, setQuestionList] = useState(data);
 
   return (
     <>
       <div className={styles.header}>
         <div className={styles.left}>
-          <Title level={2}>星标问卷</Title>
+          <Title level={2}>🌟星标问卷</Title>
         </div>
         <div className={styles.right}>搜索</div>
       </div>

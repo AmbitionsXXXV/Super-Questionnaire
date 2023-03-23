@@ -1,13 +1,97 @@
-import { useTitle } from "ahooks";
 import type { FC } from "react";
-import {} from "react";
+import { useState } from "react";
+import styles from "../index.module.scss";
+import { useTitle } from "ahooks";
+import { QuestionCard } from "@/components/QuestionCard/QuestionCard";
+import { Button, Empty, Modal, Space, Table, Tag, Typography } from "antd";
+import { IData, data } from "@/data/data";
+import { ExclamationCircleOutlined } from "@ant-design/icons";
+
+const { Title } = Typography;
+const { confirm } = Modal;
 
 const Trash: FC = () => {
   useTitle("超级问卷 - ♻️回收站");
+  const [questionList, setQuestionList] = useState<IData[]>(data);
+  const [selectedIds, setSelectedIds] = useState<string[]>([]);
+
+  const columns = [
+    {
+      title: "标题",
+      dataIndex: "title"
+      // key: 'title', // 循环列的 key ，它会默认取 dataIndex 的值
+    },
+    {
+      title: "是否发布",
+      dataIndex: "isPublished",
+      render: (isPublished: boolean) => {
+        return isPublished ? (
+          <Tag color="processing">已发布</Tag>
+        ) : (
+          <Tag color="magenta">未发布</Tag>
+        );
+      }
+    },
+    {
+      title: "答卷",
+      dataIndex: "answerCount"
+    },
+    {
+      title: "创建时间",
+      dataIndex: "createdAt"
+    }
+  ];
+
+  function Del() {
+    confirm({
+      title: "确认彻底删除该问卷？",
+      icon: <ExclamationCircleOutlined />,
+      content: "删除操作无法撤销",
+      okText: "确认",
+      cancelText: "取消"
+      // onOk: deleteQuestion
+    });
+  }
 
   return (
     <>
-      <div>Trash</div>
+      <div className={styles.header}>
+        <div className={styles.left}>
+          <Title level={2}>♻️回收站</Title>
+        </div>
+        <div className={styles.right}>搜索</div>
+      </div>
+      <div className={styles.content}>
+        {questionList.length === 0 && <Empty description="暂无♻️回收问卷" />}
+        {questionList.length > 0 && (
+          <>
+            <div style={{ marginBottom: "14px" }}>
+              <Space>
+                <Button type="primary" disabled={selectedIds.length === 0}>
+                  恢复
+                </Button>
+                <Button danger disabled={selectedIds.length === 0} onClick={Del}>
+                  删除
+                </Button>
+              </Space>
+            </div>
+            <Table
+              dataSource={data}
+              columns={columns}
+              pagination={false}
+              rowKey={q => q._id}
+              rowSelection={{
+                type: "checkbox",
+                onChange: selectedRowKeys => {
+                  setSelectedIds(selectedRowKeys as string[]);
+                }
+              }}
+            />
+          </>
+        )}
+      </div>
+
+      <div className={styles.footer}>分页</div>
     </>
   );
 };
