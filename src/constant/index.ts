@@ -15,3 +15,6 @@ export const STAT_COLORS = [
   "#EAC100",
   "#FF9D6F"
 ];
+
+export const USERNAME_KEY = "USERNAME";
+export const PASSWORD_KEY = "PASSWORD";
