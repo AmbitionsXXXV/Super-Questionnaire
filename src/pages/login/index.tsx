@@ -6,6 +6,7 @@ import { Button, Form, Input, Space, Typography } from "antd";
 import { Link } from "react-router-dom";
 import { REGISTER_PATHNAME } from "@/router";
 import { UserAddOutlined } from "@ant-design/icons";
+import { PASSWORD_KEY, USERNAME_KEY } from "@/constant";
 
 interface IFormItem {
   username: string;
@@ -20,6 +21,18 @@ function rememberUser(username: string, password: string) {
   localStorage.setItem(PASSWORD_KEY, password);
 }
 
+function deleteUserFromStorage() {
+  localStorage.removeItem(USERNAME_KEY);
+  localStorage.removeItem(PASSWORD_KEY);
+}
+
+function getUserInfoFromStorage(): { username: string; password: string } {
+  return {
+    username: localStorage.getItem(USERNAME_KEY)!,
+    password: localStorage.getItem(PASSWORD_KEY)!
+  };
+}
+
 const Login: FC = () => {
   const [form] = Form.useForm();
 
@@ -32,6 +45,11 @@ const Login: FC = () => {
       deleteUserFromStorage();
     }
   }
+
+  useEffect(() => {
+    const { username, password } = getUserInfoFromStorage();
+    form.setFieldsValue({ username, password });
+  }, []);
 
   return (
     <div className={styles.container}>
