@@ -3,7 +3,7 @@ import { useState } from "react";
 import styles from "../index.module.scss";
 import { useTitle } from "ahooks";
 import { QuestionCard } from "@/components/QuestionCard/QuestionCard";
-import { Typography } from "antd";
+import { Empty, Typography } from "antd";
 
 const { Title } = Typography;
 
@@ -52,7 +52,9 @@ const List: FC = () => {
         </div>
         <div className={styles.right}>搜索</div>
       </div>
+
       <div className={styles.content}>
+        {questionList.length === 0 && <Empty description="暂无问卷" />}
         {questionList.length > 0 &&
           questionList.map(q => {
             const { _id } = q;
@@ -60,7 +62,7 @@ const List: FC = () => {
           })}
       </div>
 
-      <div className={styles.footer}>List Footer</div>
+      <div className={styles.footer}>上划加载更多...</div>
     </>
   );
 };
