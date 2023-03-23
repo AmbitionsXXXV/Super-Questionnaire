@@ -10,7 +10,7 @@ import {
 } from "@ant-design/icons";
 
 const ManageLayout: FC = () => {
-  const nav = useNavigate();
+  const navigator = useNavigate();
   const { pathname } = useLocation();
 
   return (
@@ -21,30 +21,30 @@ const ManageLayout: FC = () => {
             <Button type="primary" size="large" icon={<PlusOutlined />}>
               创建问卷
             </Button>
-            <Divider style={{ borderTop: "transparent" }} />
+            <Divider style={{ borderTop: "transparent", marginBottom: "16px" }} />
             <Button
               type={pathname.startsWith("/manage/list") ? "default" : "text"}
               size="large"
               icon={<BarsOutlined />}
-              onClick={() => nav("/manage/list")}
+              onClick={() => navigator("/manage/list")}
             >
               我的问卷
             </Button>
-            <Divider style={{ borderTop: "transparent" }} />
+            <Divider style={{ borderTop: "transparent", margin: "0" }} />
             <Button
               type={pathname.startsWith("/manage/star") ? "default" : "text"}
               size="large"
               icon={<StarOutlined />}
-              onClick={() => nav("/manage/star")}
+              onClick={() => navigator("/manage/star")}
             >
               星标问卷
             </Button>
-            <Divider style={{ borderTop: "transparent" }} />
+            <Divider style={{ borderTop: "transparent", margin: "0" }} />
             <Button
               type={pathname.startsWith("/manage/trash") ? "default" : "text"}
               size="large"
               icon={<DeleteOutlined />}
-              onClick={() => nav("/manage/trash")}
+              onClick={() => navigator("/manage/trash")}
             >
               回收站
             </Button>

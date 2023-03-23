@@ -8,7 +8,7 @@ import styles from "./index.module.scss";
 const { Title, Paragraph } = Typography;
 
 const Home: FC = () => {
-  const nav = useNavigate();
+  const navigator = useNavigate();
 
   // function clickHandler() {
   //   // nav("/login");
@@ -23,7 +23,7 @@ const Home: FC = () => {
         <Title>问卷调查 | 在线投票</Title>
         <Paragraph>已累计创建问卷 3636 份</Paragraph>
         <div>
-          <Button type="primary" onClick={() => nav(MANAGE_INDEX_PATHNAME)}>
+          <Button type="primary" onClick={() => navigator(MANAGE_INDEX_PATHNAME)}>
             开始使用
           </Button>
         </div>
