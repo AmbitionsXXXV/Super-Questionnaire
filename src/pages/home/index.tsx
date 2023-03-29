@@ -3,7 +3,6 @@ import type { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Typography } from "antd";
 import { MANAGE_INDEX_PATHNAME } from "@/router";
-import styles from "./index.module.scss";
 
 const { Title, Paragraph } = Typography;
 
@@ -18,12 +17,16 @@ const Home: FC = () => {
   // }
 
   return (
-    <div className={styles.container}>
-      <div className={styles.info}>
+    <div className="h-login flex flex-col justify-center items-center bg-gradient">
+      <div className="text-center">
         <Title>问卷调查 | 在线投票</Title>
         <Paragraph>已累计创建问卷 3636 份</Paragraph>
         <div>
-          <Button type="primary" onClick={() => navigator(MANAGE_INDEX_PATHNAME)}>
+          <Button
+            type="primary"
+            onClick={() => navigator(MANAGE_INDEX_PATHNAME)}
+            className="h-14 text-[24px]"
+          >
             开始使用
           </Button>
         </div>

@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import type { FC } from "react";
-import styles from "./index.module.scss";
 import Checkbox from "antd/es/checkbox/Checkbox";
 import { Button, Form, Input, Space, Typography } from "antd";
 import { Link } from "react-router-dom";
@@ -52,7 +51,7 @@ const Login: FC = () => {
   }, []);
 
   return (
-    <div className={styles.container}>
+    <div className="h-login flex flex-col justify-center items-center bg-white">
       <div>
         <Space>
           <Title level={2}>

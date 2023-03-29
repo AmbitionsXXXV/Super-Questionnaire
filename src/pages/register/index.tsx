@@ -2,7 +2,6 @@ import {} from "react";
 import type { FC } from "react";
 import { UserAddOutlined } from "@ant-design/icons";
 import { Button, Form, Input, Space, Typography } from "antd";
-import styles from "./index.module.scss";
 import { Link } from "react-router-dom";
 import { LOGIN_PATHNAME } from "@/router";
 
@@ -21,7 +20,7 @@ const Register: FC = () => {
   }
 
   return (
-    <div className={styles.container}>
+    <div className="h-login flex flex-col justify-center items-center bg-white">
       <div>
         <Space>
           <Title level={2}>

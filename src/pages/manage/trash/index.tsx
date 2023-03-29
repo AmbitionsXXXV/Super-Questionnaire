@@ -1,6 +1,5 @@
 import type { FC } from "react";
 import { useState } from "react";
-import styles from "../index.module.scss";
 import { useTitle } from "ahooks";
 import { Button, Empty, Modal, Space, Table, Tag, Typography } from "antd";
 import { IData, data } from "@/data/data";
@@ -55,15 +54,15 @@ const Trash: FC = () => {
 
   return (
     <>
-      <div className={styles.header}>
-        <div className={styles.left}>
+      <div className="flex">
+        <div className="flex-1">
           <Title level={2}>♻️回收站</Title>
         </div>
-        <div className={styles.right}>
+        <div className="flex-1 text-right">
           <ListSearch />
         </div>
       </div>
-      <div className={styles.content}>
+      <div className="mb-5">
         {questionList.length === 0 && <Empty description="暂无♻️回收问卷" />}
         {questionList.length > 0 && (
           <>
@@ -93,7 +92,7 @@ const Trash: FC = () => {
         )}
       </div>
 
-      <div className={styles.footer}>分页</div>
+      <div className="text-center">分页</div>
     </>
   );
 };
