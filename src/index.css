@@ -5,3 +5,7 @@
 .h-login {
   height: calc(100vh - 64px - 65px);
 }
+
+.l-main {
+  min-height: calc(100vh - 64px - 65px);
+}

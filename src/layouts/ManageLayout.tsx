@@ -1,6 +1,5 @@
 import type { FC } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import styles from "./ManageLayout.module.scss";
 import { Button, Divider, Space } from "antd";
 import {
   DeleteOutlined,
@@ -15,8 +14,8 @@ const ManageLayout: FC = () => {
 
   return (
     <>
-      <div className={styles.container}>
-        <div className={styles.left}>
+      <div className="container max-w-screen-xl mx-auto py-6">
+        <div className="w-120">
           <Space direction="vertical">
             <Button type="primary" size="large" icon={<PlusOutlined />}>
               创建问卷
@@ -50,7 +49,7 @@ const ManageLayout: FC = () => {
             </Button>
           </Space>
         </div>
-        <div className={styles.right}>
+        <div className="flex-1 ml-16">
           <Outlet />
         </div>
       </div>

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import type { FC } from "react";
-import styles from "./QuestionCard.module.scss";
 import { Button, Divider, Modal, Popconfirm, Space, Tag, message } from "antd";
 import {
   CopyOutlined,
@@ -52,9 +51,9 @@ export const QuestionCard: FC<PropsType> = ({
 
   return (
     <>
-      <div className={styles.container}>
-        <div className={styles.title}>
-          <div className={styles.left}>
+      <div className="container bg-white my-5 py-3 rounded-lg hover:shadow-md">
+        <div className="flex">
+          <div className="flex-1">
             <Link
               to={isPublished ? `/question/stat/${_id}` : `/question/edit/${_id}`}
             >
@@ -64,7 +63,7 @@ export const QuestionCard: FC<PropsType> = ({
               </Space>
             </Link>
           </div>
-          <div className={styles.right}>
+          <div className="right flex-1 text-right text-sm">
             <Space>
               {isPublished ? (
                 <Tag color="processing">已发布</Tag>
@@ -77,8 +76,8 @@ export const QuestionCard: FC<PropsType> = ({
           </div>
         </div>
         <Divider style={{ margin: "14px 0" }} />
-        <div className={styles["button-container"]}>
-          <div className={styles.left}>
+        <div className="flex">
+          <div className="flex-1">
             <Space>
               <Button
                 type="text"
@@ -99,7 +98,7 @@ export const QuestionCard: FC<PropsType> = ({
               </Button>
             </Space>
           </div>
-          <div className={styles.right}>
+          <div className="flex-1 text-right">
             <Space>
               <Button
                 type="text"
@@ -130,6 +129,7 @@ export const QuestionCard: FC<PropsType> = ({
                 icon={<DeleteOutlined />}
                 size="small"
                 onClick={Del}
+                className="text-[#999]"
                 // disabled={deleteLoading}
               >
                 删除
