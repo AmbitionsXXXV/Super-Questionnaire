@@ -14,8 +14,8 @@ const ManageLayout: FC = () => {
 
   return (
     <>
-      <div className="container max-w-screen-xl mx-auto py-6">
-        <div className="w-120">
+      <div className="container max-w-screen-xl mx-auto py-6 flex">
+        <div className="w-[120px]">
           <Space direction="vertical">
             <Button type="primary" size="large" icon={<PlusOutlined />}>
               创建问卷
@@ -49,7 +49,7 @@ const ManageLayout: FC = () => {
             </Button>
           </Space>
         </div>
-        <div className="flex-1 ml-16">
+        <div className="flex-1 ml-[60px]">
           <Outlet />
         </div>
       </div>
