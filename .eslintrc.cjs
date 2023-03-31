@@ -21,7 +21,8 @@ module.exports = {
   plugins: ["prettier", "react", "@typescript-eslint"],
   rules: {
     "prettier/prettier": "error",
-    "@typescript-eslint/no-non-null-assertion": "off"
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/no-explicit-any": "off"
   },
   settings: {
     react: {
