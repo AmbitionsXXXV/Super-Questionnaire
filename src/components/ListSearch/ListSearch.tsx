@@ -38,7 +38,7 @@ const ListSearch: FC = () => {
         size="middle"
         value={value}
         placeholder="请输入关键字"
-        style={{ width: "210px" }}
+        className="w-56"
         onSearch={searchHandler}
         onChange={changeHandler}
       />
