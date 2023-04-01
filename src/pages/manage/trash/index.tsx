@@ -5,6 +5,7 @@ import { Button, Empty, Modal, Space, Spin, Table, Tag, Typography } from "antd"
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import ListSearch from "@/components/ListSearch/ListSearch";
 import useLoadQuestionListData from "@/hooks/useLoadQuestionListData";
+import ListPagination from "@/components/ListPagination/ListPagination";
 
 const { Title } = Typography;
 const { confirm } = Modal;
@@ -98,7 +99,9 @@ const Trash: FC = () => {
         )}
       </div>
 
-      <div className="text-center">分页</div>
+      <div className="text-center">
+        {!loading && <ListPagination total={total} />}
+      </div>
     </>
   );
 };

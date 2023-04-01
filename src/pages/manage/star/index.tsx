@@ -4,6 +4,7 @@ import { QuestionCard } from "@/components/QuestionCard/QuestionCard";
 import { Empty, Spin, Typography } from "antd";
 import ListSearch from "@/components/ListSearch/ListSearch";
 import useLoadQuestionListData from "@/hooks/useLoadQuestionListData";
+import ListPagination from "@/components/ListPagination/ListPagination";
 
 const { Title } = Typography;
 
@@ -37,7 +38,9 @@ const Star: FC = () => {
           })}
       </div>
 
-      <div className="text-center">分页</div>
+      <div className="text-center">
+        {!loading && <ListPagination total={total} />}
+      </div>
     </>
   );
 };
