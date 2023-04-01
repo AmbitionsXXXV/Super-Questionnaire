@@ -1,4 +1,3 @@
-import { useState } from "react";
 import type { FC } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { Button, Divider, Space, message } from "antd";
@@ -9,22 +8,23 @@ import {
   StarOutlined
 } from "@ant-design/icons";
 import { createQuestionService } from "@/service/question";
+import { useRequest } from "ahooks";
 
 const ManageLayout: FC = () => {
   const navigator = useNavigate();
   const { pathname } = useLocation();
-  const [loading, setLoading] = useState<boolean>(false);
 
-  async function handleCreateClick() {
-    setLoading(true);
-    const data = await createQuestionService();
-    const { id } = data ?? {};
-    if (id) {
-      navigator(`/question/edit/${id}`);
+  const {
+    run: handleCreateClick,
+    // error,
+    loading
+  } = useRequest(createQuestionService, {
+    manual: true,
+    onSuccess(res) {
+      navigator(`/question/edit/${res.id}`);
       message.success("问卷创建成功");
     }
-    setLoading(false);
-  }
+  });
 
   return (
     <>
