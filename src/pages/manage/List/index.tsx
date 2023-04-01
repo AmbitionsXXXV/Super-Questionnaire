@@ -1,16 +1,16 @@
 import type { FC } from "react";
-import { useState } from "react";
 import { useTitle } from "ahooks";
 import { QuestionCard } from "@/components/QuestionCard/QuestionCard";
-import { Empty, Typography } from "antd";
+import { Empty, Spin, Typography } from "antd";
 import ListSearch from "@/components/ListSearch/ListSearch";
-import { data } from "@/data/data";
+import useLoadQuestionListData from "@/hooks/useLoadQuestionListData";
 
 const { Title } = Typography;
 
 const List: FC = () => {
   useTitle("超级问卷 - 我的问卷");
-  const [questionList, setQuestionList] = useState(data);
+  const { data = {}, loading } = useLoadQuestionListData();
+  const { list = [], total = 0 } = data;
 
   return (
     <>
@@ -24,9 +24,15 @@ const List: FC = () => {
       </div>
 
       <div className="mb-5">
-        {questionList.length === 0 && <Empty description="暂无问卷" />}
-        {questionList.length > 0 &&
-          questionList.map(q => {
+        {loading && (
+          <div className="text-center">
+            <Spin />
+          </div>
+        )}
+        {!loading && list.length === 0 && <Empty description="暂无问卷" />}
+        {!loading &&
+          list.length > 0 &&
+          list.map((q: any) => {
             const { _id } = q;
             return <QuestionCard key={_id} {...q} />;
           })}
