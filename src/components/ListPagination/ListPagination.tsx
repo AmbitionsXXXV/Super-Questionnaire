@@ -31,9 +31,10 @@ const ListPagination: FC<PropsType> = ({ total }) => {
   // 获取 url 中的 page pageSize 参数
   useEffect(() => {
     const page = parseInt(searchParams.get(LIST_PAGE_PARAM_KEY) || "") || 1;
-    setCurrent(page);
     const pageSize =
       parseInt(searchParams.get(LIST_PAGE_SIZE_PARAM_KEY) || "") || LIST_PAGE_SIZE;
+
+    setCurrent(page);
     setPageSize(pageSize);
   }, [searchParams]);
 
