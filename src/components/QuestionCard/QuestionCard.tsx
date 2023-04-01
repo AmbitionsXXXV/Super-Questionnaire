@@ -12,6 +12,8 @@ import {
 } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useRequest } from "ahooks";
+import { updateQuestionService } from "@/service/question";
 
 type PropsType = {
   _id: string;
@@ -38,6 +40,20 @@ export const QuestionCard: FC<PropsType> = ({
   function Duplicate() {
     message.success("复制成功");
   }
+
+  // 修改 标星
+  const { loading: changeStarLoading, run: changeStar } = useRequest(
+    async () => {
+      await updateQuestionService(_id, { isStar: !isStarState });
+    },
+    {
+      manual: true,
+      onSuccess() {
+        setIsStarState(!isStarState); // 更新 state
+        message.success("已更新");
+      }
+    }
+  );
 
   function Del() {
     confirm({
@@ -104,8 +120,8 @@ export const QuestionCard: FC<PropsType> = ({
                 type="text"
                 icon={<StarOutlined />}
                 size="small"
-                // onClick={changeStar}
-                // disabled={changeStarLoading}
+                onClick={changeStar}
+                disabled={changeStarLoading}
               >
                 {isStarState ? "取消标星" : "标星"}
               </Button>
