@@ -58,7 +58,7 @@ export const QuestionCard: FC<PropsType> = ({
               to={isPublished ? `/question/stat/${_id}` : `/question/edit/${_id}`}
             >
               <Space className="ml-3">
-                {isStar && <StarFilled style={{ color: "red" }} />}
+                {isStarState && <StarFilled style={{ color: "red" }} />}
                 {title}
               </Space>
             </Link>
@@ -107,7 +107,7 @@ export const QuestionCard: FC<PropsType> = ({
                 // onClick={changeStar}
                 // disabled={changeStarLoading}
               >
-                {isStar ? "取消标星" : "标星"}
+                {isStarState ? "取消标星" : "标星"}
               </Button>
               <Popconfirm
                 title="确定复制该问卷？"
