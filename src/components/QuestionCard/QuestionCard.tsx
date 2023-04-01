@@ -57,14 +57,14 @@ export const QuestionCard: FC<PropsType> = ({
             <Link
               to={isPublished ? `/question/stat/${_id}` : `/question/edit/${_id}`}
             >
-              <Space>
+              <Space className="ml-3">
                 {isStar && <StarFilled style={{ color: "red" }} />}
                 {title}
               </Space>
             </Link>
           </div>
           <div className="right flex-1 text-right text-sm">
-            <Space>
+            <Space className="mr-3">
               {isPublished ? (
                 <Tag color="processing">已发布</Tag>
               ) : (
