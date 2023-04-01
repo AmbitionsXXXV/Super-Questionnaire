@@ -2,15 +2,17 @@ import type { FC } from "react";
 import { useState } from "react";
 import { useTitle } from "ahooks";
 import { QuestionCard } from "@/components/QuestionCard/QuestionCard";
-import { Empty, Typography } from "antd";
+import { Empty, Spin, Typography } from "antd";
 import { data } from "@/data/data";
 import ListSearch from "@/components/ListSearch/ListSearch";
+import useLoadQuestionListData from "@/hooks/useLoadQuestionListData";
 
 const { Title } = Typography;
 
 const Star: FC = () => {
   useTitle("我的问卷 - 星标问卷");
-  const [questionList, setQuestionList] = useState(data);
+  const { data = {}, loading } = useLoadQuestionListData({ isStar: true });
+  const { list = [], total = 0 } = data;
 
   return (
     <>
@@ -23,9 +25,15 @@ const Star: FC = () => {
         </div>
       </div>
       <div className="mb-5">
-        {questionList.length === 0 && <Empty description="暂无🌟星标问卷" />}
-        {questionList.length > 0 &&
-          questionList.map(q => {
+        {loading && (
+          <div className="text-center">
+            <Spin />
+          </div>
+        )}
+        {!loading && list.length === 0 && <Empty description="暂无🌟星标问卷" />}
+        {!loading &&
+          list.length > 0 &&
+          list.map((q: any) => {
             const { _id } = q;
             return <QuestionCard key={_id} {...q} />;
           })}
