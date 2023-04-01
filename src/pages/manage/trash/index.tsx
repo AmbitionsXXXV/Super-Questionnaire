@@ -1,17 +1,18 @@
 import type { FC } from "react";
 import { useState } from "react";
 import { useTitle } from "ahooks";
-import { Button, Empty, Modal, Space, Table, Tag, Typography } from "antd";
-import { IData, data } from "@/data/data";
+import { Button, Empty, Modal, Space, Spin, Table, Tag, Typography } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import ListSearch from "@/components/ListSearch/ListSearch";
+import useLoadQuestionListData from "@/hooks/useLoadQuestionListData";
 
 const { Title } = Typography;
 const { confirm } = Modal;
 
 const Trash: FC = () => {
   useTitle("超级问卷 - ♻️回收站");
-  const [questionList, setQuestionList] = useState<IData[]>(data);
+  const { data = {}, loading } = useLoadQuestionListData({ isDeleted: true });
+  const { list = [], total = 0 } = data;
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
 
   const columns = [
@@ -63,8 +64,13 @@ const Trash: FC = () => {
         </div>
       </div>
       <div className="mb-5">
-        {questionList.length === 0 && <Empty description="暂无♻️回收问卷" />}
-        {questionList.length > 0 && (
+        {loading && (
+          <div className="text-center">
+            <Spin />
+          </div>
+        )}
+        {!loading && list.length === 0 && <Empty description="暂无♻️回收问卷" />}
+        {!loading && list.length > 0 && (
           <>
             <div style={{ marginBottom: "14px" }}>
               <Space>
@@ -77,7 +83,7 @@ const Trash: FC = () => {
               </Space>
             </div>
             <Table
-              dataSource={data}
+              dataSource={list}
               columns={columns}
               pagination={false}
               rowKey={q => q._id}
