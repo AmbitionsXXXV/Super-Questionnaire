@@ -30,7 +30,7 @@ const ManageLayout: FC = () => {
     <>
       <div className="container max-w-screen-xl mx-auto py-6 flex">
         <div className="w-[120px]">
-          <Space direction="vertical">
+          <Space direction="vertical" className="sticky top-3">
             <Button
               type="primary"
               size="large"
