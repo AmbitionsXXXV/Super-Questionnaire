@@ -1,9 +1,7 @@
 import type { FC } from "react";
-import { useState } from "react";
 import { useTitle } from "ahooks";
 import { QuestionCard } from "@/components/QuestionCard/QuestionCard";
 import { Empty, Spin, Typography } from "antd";
-import { data } from "@/data/data";
 import ListSearch from "@/components/ListSearch/ListSearch";
 import useLoadQuestionListData from "@/hooks/useLoadQuestionListData";
 
