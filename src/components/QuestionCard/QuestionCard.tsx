@@ -13,7 +13,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useRequest } from "ahooks";
-import { updateQuestionService } from "@/service/question";
+import { duplicateQuestionService, updateQuestionService } from "@/service/question";
 
 type PropsType = {
   _id: string;
@@ -37,10 +37,6 @@ export const QuestionCard: FC<PropsType> = ({
   const navigator = useNavigate();
   const [isStarState, setIsStarState] = useState<boolean>(isStar);
 
-  function Duplicate() {
-    message.success("复制成功");
-  }
-
   // 修改 标星
   const { loading: changeStarLoading, run: changeStar } = useRequest(
     async () => {
@@ -51,6 +47,18 @@ export const QuestionCard: FC<PropsType> = ({
       onSuccess() {
         setIsStarState(!isStarState); // 更新 state
         message.success("已更新");
+      }
+    }
+  );
+
+  // 复制问卷
+  const { loading: duplicateLoading, run: Duplicate } = useRequest(
+    async () => await duplicateQuestionService(_id),
+    {
+      manual: true,
+      onSuccess(result) {
+        message.success("复制成功");
+        navigator(`/question/edit/${result.id}`); // 跳转到问卷编辑页
       }
     }
   );
@@ -135,7 +143,7 @@ export const QuestionCard: FC<PropsType> = ({
                   type="text"
                   icon={<CopyOutlined />}
                   size="small"
-                  // disabled={duplicateLoading}
+                  disabled={duplicateLoading}
                 >
                   复制
                 </Button>
