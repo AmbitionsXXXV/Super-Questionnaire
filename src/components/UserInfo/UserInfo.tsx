@@ -8,7 +8,7 @@ const UserInfo: FC = () => {
 
   return (
     <>
-      <Link to={LOGIN_PATHNAME}>UserInfo</Link>
+      <Link to={LOGIN_PATHNAME}>登陆</Link>
     </>
   );
 };

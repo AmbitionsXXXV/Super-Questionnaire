@@ -1,9 +1,11 @@
 import {} from "react";
 import type { FC } from "react";
 import { UserAddOutlined } from "@ant-design/icons";
-import { Button, Form, Input, Space, Typography } from "antd";
-import { Link } from "react-router-dom";
+import { Button, Form, Input, Space, Typography, message } from "antd";
+import { Link, useNavigate } from "react-router-dom";
 import { LOGIN_PATHNAME } from "@/router";
+import { useRequest } from "ahooks";
+import { registerService } from "@/service/user";
 
 const { Title } = Typography;
 
@@ -15,8 +17,23 @@ interface IFormItem {
 }
 
 const Register: FC = () => {
+  const navigator = useNavigate();
+  const { run } = useRequest(
+    async values => {
+      const { username, password, nickname } = values;
+      await registerService(username, password, nickname);
+    },
+    {
+      manual: true,
+      onSuccess() {
+        message.success("注册成功");
+        navigator(LOGIN_PATHNAME);
+      }
+    }
+  );
+
   function onFinish(values: IFormItem) {
-    console.log("values:", values);
+    run(values);
   }
 
   return (
