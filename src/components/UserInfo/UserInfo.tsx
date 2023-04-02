@@ -11,8 +11,8 @@ import { Link, useNavigate } from "react-router-dom";
 
 const UserInfo: FC = () => {
   const navigator = useNavigate();
-  const { username, nickname } = useGetUserInfo();
   const dispatch = useDispatch();
+  const { username, nickname } = useGetUserInfo();
 
   function logout() {
     dispatch(logoutReducer()); // 退出登陆：清空了 redux user 数据
