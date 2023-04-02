@@ -1,11 +1,14 @@
 import { useEffect } from "react";
 import type { FC } from "react";
 import Checkbox from "antd/es/checkbox/Checkbox";
-import { Button, Form, Input, Space, Typography } from "antd";
-import { Link } from "react-router-dom";
-import { REGISTER_PATHNAME } from "@/router";
+import { Button, Form, Input, Space, Typography, message } from "antd";
+import { Link, useNavigate } from "react-router-dom";
+import { MANAGE_INDEX_PATHNAME, REGISTER_PATHNAME } from "@/router";
 import { UserAddOutlined } from "@ant-design/icons";
 import { PASSWORD_KEY, USERNAME_KEY } from "@/constant";
+import { useRequest } from "ahooks";
+import { loginService } from "@/service/user";
+import { setToken } from "@/utils/user-token";
 
 interface IFormItem {
   username: string;
@@ -34,9 +37,29 @@ function getUserInfoFromStorage(): { username: string; password: string } {
 
 const Login: FC = () => {
   const [form] = Form.useForm();
+  const navigator = useNavigate();
+
+  const { run } = useRequest(
+    async (username: string, password: string) => {
+      const data = await loginService(username, password);
+      return data;
+    },
+    {
+      manual: true,
+      onSuccess(result) {
+        const { token = "" } = result;
+        setToken(token); // 存储 token
+
+        message.success("登录成功");
+        navigator(MANAGE_INDEX_PATHNAME); // 导航到“我的问卷”
+      }
+    }
+  );
 
   function onFinish(values: IFormItem) {
     const { remember, username, password } = values ?? {};
+
+    run(username, password); // 执行异步请求
 
     if (remember) {
       rememberUser(username, password);
