@@ -1,19 +1,35 @@
 import type { FC } from "react";
 import { useState } from "react";
-import { useTitle } from "ahooks";
-import { Button, Empty, Modal, Space, Spin, Table, Tag, Typography } from "antd";
+import { useRequest, useTitle } from "ahooks";
+import {
+  Button,
+  Empty,
+  Modal,
+  Space,
+  Spin,
+  Table,
+  Tag,
+  Typography,
+  message
+} from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import ListSearch from "@/components/ListSearch/ListSearch";
 import useLoadQuestionListData from "@/hooks/useLoadQuestionListData";
 import ListPagination from "@/components/ListPagination/ListPagination";
+import { deleteQuestionsService, updateQuestionService } from "@/service/question";
 
 const { Title } = Typography;
 const { confirm } = Modal;
 
 const Trash: FC = () => {
   useTitle("超级问卷 - ♻️回收站");
-  const { data = {}, loading } = useLoadQuestionListData({ isDeleted: true });
+  const {
+    data = {},
+    loading,
+    refresh
+  } = useLoadQuestionListData({ isDeleted: true });
   const { list = [], total = 0 } = data;
+  // 记录 id
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
 
   const columns = [
@@ -43,14 +59,45 @@ const Trash: FC = () => {
     }
   ];
 
+  // 恢复
+  const { run: recover } = useRequest(
+    async () => {
+      for await (const id of selectedIds) {
+        await updateQuestionService(id, { isDeleted: false });
+      }
+    },
+    {
+      manual: true,
+      debounceWait: 500, // 防抖
+      onSuccess() {
+        message.success("恢复成功");
+        refresh(); // 手动刷新列表
+        setSelectedIds([]);
+      }
+    }
+  );
+
+  // 删除
+  const { run: deleteQuestion } = useRequest(
+    async () => await deleteQuestionsService(selectedIds),
+    {
+      manual: true,
+      onSuccess() {
+        message.success("删除成功");
+        refresh();
+        setSelectedIds([]);
+      }
+    }
+  );
+
   function Del() {
     confirm({
       title: "确认彻底删除该问卷？",
       icon: <ExclamationCircleOutlined />,
       content: "删除操作无法撤销",
       okText: "确认",
-      cancelText: "取消"
-      // onOk: deleteQuestion
+      cancelText: "取消",
+      onOk: deleteQuestion
     });
   }
 
@@ -75,11 +122,15 @@ const Trash: FC = () => {
           <>
             <div style={{ marginBottom: "14px" }}>
               <Space>
-                <Button type="primary" disabled={selectedIds.length === 0}>
+                <Button
+                  type="primary"
+                  disabled={selectedIds.length === 0}
+                  onClick={recover}
+                >
                   恢复
                 </Button>
                 <Button danger disabled={selectedIds.length === 0} onClick={Del}>
-                  删除
+                  彻底删除
                 </Button>
               </Space>
             </div>
