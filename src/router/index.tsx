@@ -75,12 +75,9 @@ export const REGISTER_PATHNAME = "/register";
 export const MANAGE_INDEX_PATHNAME = "/manage/list";
 export default router;
 export function isLoginOrRegister(pathname: string) {
-  if ([LOGIN_PATHNAME, REGISTER_PATHNAME].includes(pathname)) return true;
-  return false;
+  return [LOGIN_PATHNAME, REGISTER_PATHNAME].includes(pathname);
 }
 
 export function isNoNeedUserInfo(pathname: string) {
-  if ([HOME_PATHNAME, LOGIN_PATHNAME, REGISTER_PATHNAME].includes(pathname))
-    return true;
-  return false;
+  return [HOME_PATHNAME, LOGIN_PATHNAME, REGISTER_PATHNAME].includes(pathname);
 }
