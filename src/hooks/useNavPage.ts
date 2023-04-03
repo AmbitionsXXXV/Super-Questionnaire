@@ -6,7 +6,7 @@ import {
   isNoNeedUserInfo,
   MANAGE_INDEX_PATHNAME,
   LOGIN_PATHNAME
-} from "@/router/index";
+} from "@/router";
 
 function useNavPage(waitingUserData: boolean) {
   const { username } = useGetUserInfo();

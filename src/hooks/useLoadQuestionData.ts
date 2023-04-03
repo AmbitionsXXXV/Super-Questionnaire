@@ -6,9 +6,7 @@ function useLoadQuestionData() {
   const { id = "" } = useParams();
 
   async function load() {
-    const data = await getQuestionService(id);
-
-    return data;
+    return await getQuestionService(id);
   }
 
   const { data, loading, error } = useRequest(load);

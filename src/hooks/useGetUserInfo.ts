@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { UserStateType } from "../store/modules/user";
+import { UserStateType } from "@/store/modules/user";
 import { StateType } from "@/store";
 
 function useGetUserInfo() {

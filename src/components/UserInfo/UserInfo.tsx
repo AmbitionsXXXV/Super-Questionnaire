@@ -5,7 +5,6 @@ import { removeToken } from "@/utils/user-token";
 import { UserOutlined } from "@ant-design/icons";
 import { Button, message } from "antd";
 import type { FC } from "react";
-import {} from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
