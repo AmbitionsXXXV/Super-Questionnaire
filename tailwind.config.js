@@ -8,7 +8,10 @@ export default {
       }
     }
   },
-  plugins: [require("@tailwindcss/typography")],
+  plugins: [
+    require("@tailwindcss/typography"),
+    require("prettier-plugin-tailwindcss")
+  ],
   // 和 AntDesign 样式冲突问题
   corePlugins: {
     preflight: false
