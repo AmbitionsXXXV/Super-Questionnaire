@@ -11,18 +11,15 @@ const QuestionLayout: FC = () => {
   useNavPage(waitingUserData);
 
   return (
-    <>
-      <div>QuestionLayout Header</div>
-      <div>
-        {waitingUserData ? (
-          <div className="text-center mt-15">
-            <Spin />
-          </div>
-        ) : (
-          <Outlet />
-        )}
-      </div>
-    </>
+    <div className="h-screen">
+      {waitingUserData ? (
+        <div className="text-center mt-15">
+          <Spin />
+        </div>
+      ) : (
+        <Outlet />
+      )}
+    </div>
   );
 };
 
