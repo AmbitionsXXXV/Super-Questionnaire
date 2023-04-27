@@ -1,6 +1,5 @@
 import { FC } from "react";
-import QuestionTitlePropsType from "./interface";
-import { QuestionTitleDefaultProps } from "./interface";
+import { QuestionTitleDefaultProps, QuestionTitlePropsType } from "./interface";
 import { Typography } from "antd";
 
 const { Title } = Typography;

@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import QuestionInputType, { QuestionInputDefaultProps } from "./interface";
+import { QuestionInputDefaultProps, QuestionInputType } from "./interface";
 import { Input, Typography } from "antd";
 
 const { Paragraph } = Typography;

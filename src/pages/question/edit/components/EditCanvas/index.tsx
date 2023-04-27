@@ -1,5 +1,5 @@
-import QuestionInput from "@/components/QuestionComponents/QuestionInput";
-import QuestionTitle from "@/components/QuestionComponents/QuestionTitle";
+import QuestionInput from "@/components/QuestionComponents/QuestionInput/component";
+import QuestionTitle from "@/components/QuestionComponents/QuestionTitle/component";
 import { FC } from "react";
 
 const EditCanvas: FC = () => {

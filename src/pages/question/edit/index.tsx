@@ -22,4 +22,5 @@ const Edit: FC = () => {
     </div>
   );
 };
+
 export default Edit;
