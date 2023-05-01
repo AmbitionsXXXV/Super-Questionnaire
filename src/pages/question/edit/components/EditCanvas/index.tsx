@@ -1,8 +1,21 @@
 import QuestionInput from "@/components/QuestionComponents/QuestionInput/component";
 import QuestionTitle from "@/components/QuestionComponents/QuestionTitle/component";
+import { Spin } from "antd";
 import { FC } from "react";
 
-const EditCanvas: FC = () => {
+type PropsType = {
+  loading: boolean;
+};
+
+const EditCanvas: FC<PropsType> = ({ loading }) => {
+  if (loading) {
+    return (
+      <div className="text-center mt-6">
+        <Spin />
+      </div>
+    );
+  }
+
   return (
     <div className="bg-white min-h-full overflow-hidden">
       <div className="m-3 border border-solid border-white p-3 rounded hover:border-slate-300">
