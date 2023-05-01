@@ -23,8 +23,8 @@ export const componentsSlice = createSlice({
     // 重置所有组件
     resetComponents: (
       state: ComponentsStateType,
-      { payload }: PayloadAction<ComponentsStateType>
-    ) => payload
+      action: PayloadAction<ComponentsStateType>
+    ) => action.payload
   }
 });
 

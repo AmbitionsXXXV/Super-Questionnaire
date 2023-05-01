@@ -13,6 +13,7 @@ function useLoadQuestionData() {
     async (id: string) => {
       if (!id) throw new Error("没有该问卷");
       const data = await getQuestionService(id);
+
       return data;
     },
     { manual: true }
@@ -20,11 +21,10 @@ function useLoadQuestionData() {
 
   useEffect(() => {
     if (!data) return;
-
-    const { title = "", components = [] } = data;
+    const { title = "", componentList = [] } = data;
 
     // 存储到 redux 中
-    dispatch(resetComponents(components));
+    dispatch(resetComponents({ componentList }));
   }, [data]);
 
   // 请求数据

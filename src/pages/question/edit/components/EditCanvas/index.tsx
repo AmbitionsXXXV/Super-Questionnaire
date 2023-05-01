@@ -1,13 +1,17 @@
+import { Spin } from "antd";
+import type { FC } from "react";
 import QuestionInput from "@/components/QuestionComponents/QuestionInput/component";
 import QuestionTitle from "@/components/QuestionComponents/QuestionTitle/component";
-import { Spin } from "antd";
-import { FC } from "react";
+import useGetComponentInfo from "@/hooks/useGetComponentInfo";
 
 type PropsType = {
   loading: boolean;
 };
 
 const EditCanvas: FC<PropsType> = ({ loading }) => {
+  const { componentList } = useGetComponentInfo();
+  console.log(componentList);
+
   if (loading) {
     return (
       <div className="text-center mt-6">
