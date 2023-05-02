@@ -7,10 +7,11 @@ function useGetComponentInfo() {
     state => state.components
   ) as ComponentsStateType;
 
-  const { componentList = [] } = component;
+  const { componentList = [], selectedId } = component;
 
   return {
-    componentList
+    componentList,
+    selectedId
   };
 }
 

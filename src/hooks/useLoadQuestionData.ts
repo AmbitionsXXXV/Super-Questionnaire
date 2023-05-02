@@ -23,8 +23,14 @@ function useLoadQuestionData() {
     if (!data) return;
     const { title = "", componentList = [] } = data;
 
+    // 获取默认的 selectedId
+    let selectedId = "";
+    if (componentList.length > 0) {
+      selectedId = componentList[0].fe_id; // 默认选中第一个组件
+    }
+
     // 存储到 redux 中
-    dispatch(resetComponents({ componentList }));
+    dispatch(resetComponents({ componentList, selectedId }));
   }, [data]);
 
   // 请求数据

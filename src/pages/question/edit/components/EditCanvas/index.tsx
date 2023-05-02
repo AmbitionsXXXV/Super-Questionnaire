@@ -1,8 +1,10 @@
 import { Spin } from "antd";
-import type { FC } from "react";
+import type { FC, MouseEvent } from "react";
+import classNames from "classnames";
 import useGetComponentInfo from "@/hooks/useGetComponentInfo";
-import { ComponentsInfoType } from "@/store/modules/components";
+import { ComponentsInfoType, changeSelectedId } from "@/store/modules/components";
 import { getComponentConfByType } from "@/components/QuestionComponents";
+import { useDispatch } from "react-redux";
 
 // import QuestionInput from "@/components/QuestionComponents/QuestionInput/component";
 // import QuestionTitle from "@/components/QuestionComponents/QuestionTitle/component";
@@ -14,6 +16,7 @@ type PropsType = {
 function genComponent(componentInfo: ComponentsInfoType) {
   const { type, props } = componentInfo;
   const componentConf = getComponentConfByType(type);
+
   if (componentConf == null) return null;
   const { Component } = componentConf;
 
@@ -21,7 +24,14 @@ function genComponent(componentInfo: ComponentsInfoType) {
 }
 
 const EditCanvas: FC<PropsType> = ({ loading }) => {
-  const { componentList } = useGetComponentInfo();
+  const { componentList, selectedId } = useGetComponentInfo();
+  const dispatch = useDispatch();
+
+  function handleClick(e: MouseEvent, id: string) {
+    // 阻止事件冒泡
+    e.stopPropagation();
+    dispatch(changeSelectedId(id));
+  }
 
   if (loading) {
     return (
@@ -35,10 +45,19 @@ const EditCanvas: FC<PropsType> = ({ loading }) => {
     <div className="bg-white min-h-full overflow-hidden">
       {componentList.map(c => {
         const { fe_id } = c;
+        const wrapperDefaultClassName =
+          "m-3 border-2 border-solid border-white p-3 rounded hover:border-slate-300";
+        const selectedClassName = "border-blue-300 hover:border-blue-300";
+        const wrapperClassName = classNames({
+          [wrapperDefaultClassName]: true,
+          [selectedClassName]: fe_id === selectedId
+        });
+
         return (
           <div
             key={fe_id}
-            className="m-3 border border-solid border-white p-3 rounded hover:border-slate-300"
+            onClick={e => handleClick(e, fe_id)}
+            className={wrapperClassName}
           >
             <div className="pointer-events-none">{genComponent(c)}</div>
           </div>

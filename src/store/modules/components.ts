@@ -1,3 +1,4 @@
+import produce from "immer";
 import { ComponentPropsType } from "@/components/QuestionComponents";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
@@ -9,10 +10,12 @@ export type ComponentsInfoType = {
 };
 
 export type ComponentsStateType = {
+  selectedId: string;
   componentList: Array<ComponentsInfoType>;
 };
 
 const INIT_STATE: ComponentsStateType = {
+  selectedId: "",
   componentList: []
 };
 
@@ -23,10 +26,16 @@ export const componentsSlice = createSlice({
     // 重置所有组件
     resetComponents: (
       state: ComponentsStateType,
-      action: PayloadAction<ComponentsStateType>
-    ) => action.payload
+      { payload }: PayloadAction<ComponentsStateType>
+    ) => payload,
+
+    changeSelectedId: produce(
+      (draft: ComponentsStateType, { payload }: PayloadAction<string>) => {
+        draft.selectedId = payload;
+      }
+    )
   }
 });
 
-export const { resetComponents } = componentsSlice.actions;
+export const { resetComponents, changeSelectedId } = componentsSlice.actions;
 export default componentsSlice.reducer;
