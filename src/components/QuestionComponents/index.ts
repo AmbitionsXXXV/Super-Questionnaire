@@ -19,6 +19,8 @@ const componentConfList: ComponentConfType[] = [
   QuestionTitleConf
 ];
 
+// 组件分组
+
 export function getComponentConfByType(type: string) {
   return componentConfList.find(c => c.type === type);
 }

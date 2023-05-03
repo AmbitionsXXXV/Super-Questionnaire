@@ -3,6 +3,7 @@ import useLoadQuestionData from "@/hooks/useLoadQuestionData";
 import EditCanvas from "./components/EditCanvas";
 import { useDispatch } from "react-redux";
 import { changeSelectedId } from "@/store/modules/components";
+import LeftPanel from "./components/LeftPanel";
 
 const Edit: FC = () => {
   const dispatch = useDispatch();
@@ -17,7 +18,9 @@ const Edit: FC = () => {
       <div className="h-7 bg-white">Header</div>
       <div className="flex-auto py-3 px-0">
         <div className="my-0 mx-6 h-full flex">
-          <div className="w-72 bg-white pt-2 pb-0 px-2">Left</div>
+          <div className="w-72 bg-white pt-2 pb-0 px-2">
+            <LeftPanel />
+          </div>
           <div
             onClick={clearSelectedId}
             className="flex-1 relative h-full overflow-hidden"
