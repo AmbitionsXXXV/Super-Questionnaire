@@ -15,5 +15,6 @@ export default {
   // 和 AntDesign 样式冲突问题
   corePlugins: {
     preflight: false
-  }
+  },
+  important: true
 };
