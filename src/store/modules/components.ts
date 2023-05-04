@@ -25,7 +25,7 @@ export const componentsSlice = createSlice({
   reducers: {
     // 重置所有组件
     resetComponents: (
-      state: ComponentsStateType,
+      _: ComponentsStateType,
       { payload }: PayloadAction<ComponentsStateType>
     ) => payload,
 
@@ -55,10 +55,30 @@ export const componentsSlice = createSlice({
 
         draft.selectedId = newComponent.fe_id;
       }
+    ),
+
+    // 修改组件属性
+    changeComponentProps: produce(
+      (
+        draft: ComponentsStateType,
+        { payload }: PayloadAction<{ fe_id: string; newProps: ComponentPropsType }>
+      ) => {
+        const { fe_id, newProps } = payload;
+
+        // 当前要修改属性的这个组件
+        const curComp = draft.componentList.find(c => c.fe_id === fe_id);
+        if (curComp) {
+          curComp.props = { ...curComp.props, ...newProps };
+        }
+      }
     )
   }
 });
 
-export const { resetComponents, changeSelectedId, addComponent } =
-  componentsSlice.actions;
+export const {
+  resetComponents,
+  changeSelectedId,
+  addComponent,
+  changeComponentProps
+} = componentsSlice.actions;
 export default componentsSlice.reducer;

@@ -29,7 +29,7 @@ const QuestionTitle: FC<QuestionTitlePropsType> = (
   return (
     <Title
       level={level}
-      className={`${isCenter} ? "text-center" : "text-start" m-0 mb-1 ${getFontSize(
+      className={`${isCenter} ? "text-start" : "text-center" m-0 mb-1 ${getFontSize(
         level
       )}`}
     >

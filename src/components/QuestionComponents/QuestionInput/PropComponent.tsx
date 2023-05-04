@@ -5,9 +5,16 @@ import { useForm } from "antd/es/form/Form";
 
 const PropComponent: FC<QuestionInputPropsType> = ({
   title,
-  placeholder
+  placeholder,
+  onChange
 }: QuestionInputPropsType) => {
   const [form] = useForm();
+
+  function handleValueChange() {
+    if (onChange) {
+      onChange(form.getFieldsValue());
+    }
+  }
 
   // 同类组件切换,切换属性值
   useEffect(() => {
@@ -15,7 +22,12 @@ const PropComponent: FC<QuestionInputPropsType> = ({
   }, [title, placeholder]);
 
   return (
-    <Form layout="vertical" initialValues={{ title, placeholder }}>
+    <Form
+      form={form}
+      layout="vertical"
+      onValuesChange={handleValueChange}
+      initialValues={{ title, placeholder }}
+    >
       <Form.Item
         label="标题"
         name="title"

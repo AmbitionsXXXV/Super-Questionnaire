@@ -9,8 +9,9 @@ export type ComponentPropsType = QuestionInputPropsType & QuestionTitlePropsType
 export type ComponentConfType = {
   title: string;
   type: string;
-  Component: FC<ComponentPropsType>;
   defaultProps: ComponentPropsType;
+  Component: FC<ComponentPropsType>;
+  PropComponent: FC<ComponentPropsType>;
 };
 
 // 全部组件的配置

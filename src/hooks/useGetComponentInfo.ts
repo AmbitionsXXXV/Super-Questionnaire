@@ -8,10 +8,12 @@ function useGetComponentInfo() {
   ) as ComponentsStateType;
 
   const { componentList = [], selectedId } = component;
+  const selectedComponent = componentList.find(c => c.fe_id === selectedId);
 
   return {
+    selectedId,
     componentList,
-    selectedId
+    selectedComponent
   };
 }
 
