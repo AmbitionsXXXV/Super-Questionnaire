@@ -33,9 +33,32 @@ export const componentsSlice = createSlice({
       (draft: ComponentsStateType, { payload }: PayloadAction<string>) => {
         draft.selectedId = payload;
       }
+    ),
+
+    // 添加新组件
+    addComponent: produce(
+      (
+        draft: ComponentsStateType,
+        { payload }: PayloadAction<ComponentsInfoType>
+      ) => {
+        const newComponent = payload;
+        const { selectedId, componentList } = draft;
+        const index = componentList.findIndex(c => c.fe_id === selectedId);
+
+        if (index < 0) {
+          // 未选中任何组件
+          draft.componentList.push(newComponent);
+        } else {
+          // 选中了组件，插入到 index 后面
+          draft.componentList.splice(index + 1, 0, newComponent);
+        }
+
+        draft.selectedId = newComponent.fe_id;
+      }
     )
   }
 });
 
-export const { resetComponents, changeSelectedId } = componentsSlice.actions;
+export const { resetComponents, changeSelectedId, addComponent } =
+  componentsSlice.actions;
 export default componentsSlice.reducer;

@@ -1,13 +1,9 @@
 import { Spin } from "antd";
 import type { FC, MouseEvent } from "react";
-import classNames from "classnames";
 import useGetComponentInfo from "@/hooks/useGetComponentInfo";
 import { ComponentsInfoType, changeSelectedId } from "@/store/modules/components";
 import { getComponentConfByType } from "@/components/QuestionComponents";
 import { useDispatch } from "react-redux";
-
-// import QuestionInput from "@/components/QuestionComponents/QuestionInput/component";
-// import QuestionTitle from "@/components/QuestionComponents/QuestionTitle/component";
 
 type PropsType = {
   loading: boolean;
@@ -45,36 +41,21 @@ const EditCanvas: FC<PropsType> = ({ loading }) => {
     <div className="bg-white min-h-full overflow-hidden">
       {componentList.map(c => {
         const { fe_id } = c;
-        const wrapperDefaultClassName =
-          "m-3 border-2 border-solid border-white p-3 rounded hover:border-slate-300";
-        const selectedClassName = "border-blue-300 hover:border-blue-300";
-        const wrapperClassName = classNames({
-          [wrapperDefaultClassName]: true,
-          [selectedClassName]: fe_id === selectedId
-        });
 
         return (
           <div
             key={fe_id}
             onClick={e => handleClick(e, fe_id)}
-            className={wrapperClassName}
+            className={`${
+              fe_id === selectedId
+                ? "m-3 border-2 border-solid p-3 rounded border-blue-300 hover:border-blue-300"
+                : "m-3 border-2 border-solid border-white p-3 rounded hover:border-slate-300"
+            }`}
           >
             <div className="pointer-events-none">{genComponent(c)}</div>
           </div>
         );
       })}
-      {/* <div className="m-3 border border-solid border-white p-3 rounded hover:border-slate-300"> */}
-      {/* 屏蔽鼠标点击行为 */}
-      {/* <div className="pointer-events-none">
-          <QuestionTitle />
-        </div>
-      </div>
-      <div className="m-3 border border-solid border-white p-3 rounded hover:border-slate-300"> */}
-      {/* 屏蔽鼠标点击行为 */}
-      {/* <div className="pointer-events-none">
-          <QuestionInput />
-        </div>
-      </div> */}
     </div>
   );
 };
