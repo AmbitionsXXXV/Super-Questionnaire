@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { changeSelectedId } from "@/store/modules/components";
 import LeftPanel from "./components/LeftPanel";
 import RightPanel from "@/pages/question/edit/components/RightPanel";
+import EditHeader from "@/pages/question/edit/components/EditHeader";
 
 const Edit: FC = () => {
   const dispatch = useDispatch();
@@ -16,7 +17,7 @@ const Edit: FC = () => {
 
   return (
     <div className="flex flex-col h-screen bg-slate-200">
-      <div className="h-7 bg-white">Header</div>
+      <EditHeader />
       <div className="flex-auto py-3 px-0">
         <div className="my-0 mx-6 h-full flex">
           <div className="w-72 bg-white pt-2 pb-0 px-2">
