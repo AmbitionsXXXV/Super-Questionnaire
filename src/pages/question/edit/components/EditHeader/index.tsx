@@ -1,8 +1,8 @@
-import { FC } from "react";
+import type { FC } from "react";
 import { Button, Space, Typography } from "antd";
 import { LeftOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
-import EditToolbox from "@/pages/question/edit/components/EditToolbox";
+import EditToolbar from "../EditToolbar";
 
 const { Title } = Typography;
 
@@ -25,7 +25,7 @@ const EditHeader: FC = () => {
           </Space>
         </div>
         <div className="flex-1 text-center">
-          <EditToolbox />
+          <EditToolbar />
         </div>
         <div className="flex-1 text-right">
           <Space>
