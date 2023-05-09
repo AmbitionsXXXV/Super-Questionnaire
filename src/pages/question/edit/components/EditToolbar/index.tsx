@@ -1,4 +1,4 @@
-import { FC } from "react";
+import type { FC } from "react";
 import { Button, Space, Tooltip } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import { useDispatch } from "react-redux";

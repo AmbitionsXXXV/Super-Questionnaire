@@ -1,9 +1,9 @@
 import { Spin } from "antd";
+import { useDispatch } from "react-redux";
 import type { FC, MouseEvent } from "react";
 import useGetComponentInfo from "@/hooks/useGetComponentInfo";
 import { ComponentsInfoType, changeSelectedId } from "@/store/modules/components";
 import { getComponentConfByType } from "@/components/QuestionComponents";
-import { useDispatch } from "react-redux";
 
 type PropsType = {
   loading: boolean;
