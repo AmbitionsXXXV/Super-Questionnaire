@@ -39,23 +39,25 @@ const EditCanvas: FC<PropsType> = ({ loading }) => {
 
   return (
     <div className="bg-white min-h-full overflow-hidden">
-      {componentList.map(c => {
-        const { fe_id } = c;
+      {componentList
+        .filter(c => !c.isHidden)
+        .map(c => {
+          const { fe_id } = c;
 
-        return (
-          <div
-            key={fe_id}
-            onClick={e => handleClick(e, fe_id)}
-            className={`${
-              fe_id === selectedId
-                ? "m-3 border-2 border-solid p-3 rounded border-blue-300 hover:border-blue-300"
-                : "m-3 border-2 border-solid border-white p-3 rounded hover:border-slate-300"
-            }`}
-          >
-            <div className="pointer-events-none">{genComponent(c)}</div>
-          </div>
-        );
-      })}
+          return (
+            <div
+              key={fe_id}
+              onClick={e => handleClick(e, fe_id)}
+              className={`${
+                fe_id === selectedId
+                  ? "m-3 border-2 border-solid p-3 rounded border-blue-300 hover:border-blue-300"
+                  : "m-3 border-2 border-solid border-white p-3 rounded hover:border-slate-300"
+              }`}
+            >
+              <div className="pointer-events-none">{genComponent(c)}</div>
+            </div>
+          );
+        })}
     </div>
   );
 };
