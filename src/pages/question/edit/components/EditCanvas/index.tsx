@@ -42,7 +42,7 @@ const EditCanvas: FC<PropsType> = ({ loading }) => {
       {componentList
         .filter(c => !c.isHidden)
         .map(c => {
-          const { fe_id } = c;
+          const { fe_id, isLocked } = c;
 
           return (
             <div
@@ -52,7 +52,7 @@ const EditCanvas: FC<PropsType> = ({ loading }) => {
                 fe_id === selectedId
                   ? "m-3 border-2 border-solid p-3 rounded border-blue-300 hover:border-blue-300"
                   : "m-3 border-2 border-solid border-white p-3 rounded hover:border-slate-300"
-              }`}
+              } ${isLocked ? "opacity-50 cursor-not-allowed" : ""}`}
             >
               <div className="pointer-events-none">{genComponent(c)}</div>
             </div>

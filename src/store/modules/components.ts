@@ -7,6 +7,7 @@ export type ComponentsInfoType = {
   fe_id: string; // Todo
   type: string;
   title: string;
+  isLocked?: boolean;
   isHidden?: boolean;
   props: ComponentPropsType;
 };
@@ -109,6 +110,19 @@ export const componentsSlice = createSlice({
         const curComp = componentList.find(c => c.fe_id === fe_id);
         if (curComp) curComp.isHidden = isHidden;
       }
+    ),
+
+    // 锁定/解锁组件
+    toggleComponentLocked: produce(
+      (
+        draft: ComponentsStateType,
+        { payload }: PayloadAction<{ fe_id: string }>
+      ) => {
+        const { fe_id } = payload;
+
+        const curComp = draft.componentList.find(c => c.fe_id === fe_id);
+        if (curComp) curComp.isLocked = !curComp.isLocked;
+      }
     )
   }
 });
@@ -119,6 +133,7 @@ export const {
   addComponent,
   changeComponentProps,
   removeSelectedComponent,
-  changeComponentHidden
+  changeComponentHidden,
+  toggleComponentLocked
 } = componentsSlice.actions;
 export default componentsSlice.reducer;

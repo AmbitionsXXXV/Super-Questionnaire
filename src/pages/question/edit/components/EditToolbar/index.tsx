@@ -1,16 +1,23 @@
 import type { FC } from "react";
 import { Button, Space, Tooltip } from "antd";
-import { DeleteOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
+import {
+  DeleteOutlined,
+  EyeInvisibleOutlined,
+  LockOutlined
+} from "@ant-design/icons";
 import { useDispatch } from "react-redux";
 import {
   changeComponentHidden,
-  removeSelectedComponent
+  removeSelectedComponent,
+  toggleComponentLocked
 } from "@/store/modules/components";
 import UseGetComponentInfo from "@/hooks/useGetComponentInfo";
 
 const EditToolbox: FC = () => {
   const dispatch = useDispatch();
-  const { selectedId } = UseGetComponentInfo();
+  const { selectedId, selectedComponent } = UseGetComponentInfo();
+
+  const { isLocked } = selectedComponent || {};
 
   function handleDelete() {
     dispatch(removeSelectedComponent());
@@ -18,6 +25,10 @@ const EditToolbox: FC = () => {
 
   function handleHidden() {
     dispatch(changeComponentHidden({ fe_id: selectedId, isHidden: true }));
+  }
+
+  function handleLock() {
+    dispatch(toggleComponentLocked({ fe_id: selectedId }));
   }
 
   return (
@@ -30,6 +41,14 @@ const EditToolbox: FC = () => {
           shape="circle"
           icon={<EyeInvisibleOutlined />}
           onClick={handleHidden}
+        />
+      </Tooltip>
+      <Tooltip title="锁定">
+        <Button
+          shape="circle"
+          type={isLocked ? "primary" : "default"}
+          icon={<LockOutlined />}
+          onClick={handleLock}
         />
       </Tooltip>
     </Space>
