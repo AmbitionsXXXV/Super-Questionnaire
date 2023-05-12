@@ -5,6 +5,7 @@ import { useForm } from "antd/es/form/Form";
 
 const PropComponent: FC<QuestionInputPropsType> = ({
   title,
+  disabled,
   placeholder,
   onChange
 }: QuestionInputPropsType) => {
@@ -25,6 +26,7 @@ const PropComponent: FC<QuestionInputPropsType> = ({
     <Form
       form={form}
       layout="vertical"
+      disabled={disabled}
       onValuesChange={handleValueChange}
       initialValues={{ title, placeholder }}
     >
