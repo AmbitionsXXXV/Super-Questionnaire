@@ -2,6 +2,7 @@ import { Spin } from "antd";
 import { useDispatch } from "react-redux";
 import type { FC, MouseEvent } from "react";
 import useGetComponentInfo from "@/hooks/useGetComponentInfo";
+import useBindCanvasKeyPress from "@/hooks/useBindCanvasKeyPress";
 import { ComponentsInfoType, changeSelectedId } from "@/store/modules/components";
 import { getComponentConfByType } from "@/components/QuestionComponents";
 
@@ -28,6 +29,9 @@ const EditCanvas: FC<PropsType> = ({ loading }) => {
     e.stopPropagation();
     dispatch(changeSelectedId(id));
   }
+
+  // 绑定快捷键
+  useBindCanvasKeyPress();
 
   if (loading) {
     return (
