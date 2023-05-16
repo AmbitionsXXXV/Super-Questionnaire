@@ -1,6 +1,8 @@
 import type { FC } from "react";
 import { Button, Space, Tooltip } from "antd";
 import {
+  BlockOutlined,
+  CopyOutlined,
   DeleteOutlined,
   EyeInvisibleOutlined,
   LockOutlined
@@ -8,6 +10,8 @@ import {
 import { useDispatch } from "react-redux";
 import {
   changeComponentHidden,
+  copySelectedComponent,
+  pasteCopiedComponent,
   removeSelectedComponent,
   toggleComponentLocked
 } from "@/store/modules/components";
@@ -15,7 +19,7 @@ import UseGetComponentInfo from "@/hooks/useGetComponentInfo";
 
 const EditToolbox: FC = () => {
   const dispatch = useDispatch();
-  const { selectedId, selectedComponent } = UseGetComponentInfo();
+  const { selectedId, selectedComponent, copiedComponent } = UseGetComponentInfo();
 
   const { isLocked } = selectedComponent || {};
 
@@ -29,6 +33,16 @@ const EditToolbox: FC = () => {
 
   function handleLock() {
     dispatch(toggleComponentLocked({ fe_id: selectedId }));
+  }
+
+  function handleCopy() {
+    // 复制
+    dispatch(copySelectedComponent());
+  }
+
+  function handlePaste() {
+    // 粘贴: 是否复制后
+    dispatch(pasteCopiedComponent());
   }
 
   return (
@@ -49,6 +63,17 @@ const EditToolbox: FC = () => {
           type={isLocked ? "primary" : "default"}
           icon={<LockOutlined />}
           onClick={handleLock}
+        />
+      </Tooltip>
+      <Tooltip title="复制">
+        <Button shape="circle" icon={<CopyOutlined />} onClick={handleCopy} />
+      </Tooltip>
+      <Tooltip title="粘贴">
+        <Button
+          shape="circle"
+          icon={<BlockOutlined />}
+          disabled={copiedComponent == null}
+          onClick={handlePaste}
         />
       </Tooltip>
     </Space>

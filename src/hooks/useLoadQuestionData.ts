@@ -30,7 +30,7 @@ function useLoadQuestionData() {
     }
 
     // 存储到 redux 中
-    dispatch(resetComponents({ componentList, selectedId }));
+    dispatch(resetComponents({ componentList, selectedId, copiedComponent: null }));
   }, [data]);
 
   // 请求数据
