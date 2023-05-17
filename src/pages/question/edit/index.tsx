@@ -20,7 +20,7 @@ const Edit: FC = () => {
       <EditHeader />
       <div className="flex-auto py-3 px-0">
         <div className="my-0 mx-6 h-full flex">
-          <div className="w-72 bg-white pt-2 pb-0 px-2">
+          <div className="w-72 bg-white pt-2 pb-0 px-2 rounded-r-xl">
             <LeftPanel />
           </div>
           <div
@@ -31,7 +31,7 @@ const Edit: FC = () => {
               <EditCanvas loading={loading} />
             </div>
           </div>
-          <div className="w-80 bg-white pt-2 pb-0 px-2">
+          <div className="w-80 bg-white pt-2 pb-0 px-2 rounded-l-xl">
             <RightPanel />
           </div>
         </div>
