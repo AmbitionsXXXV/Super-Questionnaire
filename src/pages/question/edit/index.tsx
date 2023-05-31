@@ -1,11 +1,8 @@
 import type { FC } from "react";
 import useLoadQuestionData from "@/hooks/useLoadQuestionData";
-import EditCanvas from "./components/EditCanvas";
 import { useDispatch } from "react-redux";
 import { changeSelectedId } from "@/store/modules/components";
-import LeftPanel from "./components/LeftPanel";
-import RightPanel from "@/pages/question/edit/components/RightPanel";
-import EditHeader from "@/pages/question/edit/components/EditHeader";
+import { EditCanvas, EditHeader, LeftPanel, RightPanel } from "./components";
 
 const Edit: FC = () => {
   const dispatch = useDispatch();
