@@ -1,11 +1,11 @@
-import useGetUserInfo from "@/hooks/useGetUserInfo";
+import type { FC } from "react";
+import { Button, message } from "antd";
 import { LOGIN_PATHNAME } from "@/router";
-import { logoutReducer } from "@/store/modules/user";
+import { useDispatch } from "react-redux";
 import { removeToken } from "@/utils/user-token";
 import { UserOutlined } from "@ant-design/icons";
-import { Button, message } from "antd";
-import type { FC } from "react";
-import { useDispatch } from "react-redux";
+import useGetUserInfo from "@/hooks/useGetUserInfo";
+import { logoutReducer } from "@/store/modules/user";
 import { Link, useNavigate } from "react-router-dom";
 
 const UserInfo: FC = () => {
