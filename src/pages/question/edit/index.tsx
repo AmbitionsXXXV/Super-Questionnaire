@@ -15,9 +15,9 @@ const Edit: FC = () => {
   return (
     <div className="flex flex-col h-screen bg-slate-200">
       <EditHeader />
-      <div className="flex-auto py-3 px-0">
-        <div className="my-0 mx-6 h-full flex">
-          <div className="w-72 bg-white pt-2 pb-0 px-2 rounded-r-xl">
+      <div className="flex-auto py-3 px-0 h-left">
+        <div className="my-0 mx-6 h-left flex">
+          <div className="w-72 bg-white pt-2 pb-0 px-2 rounded-r-xl overflow-auto">
             <LeftPanel />
           </div>
           <div
