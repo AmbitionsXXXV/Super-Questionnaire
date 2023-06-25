@@ -1,6 +1,6 @@
-import { FC, useEffect } from "react";
-import { QuestionTitlePropsType } from "./interface";
-import { Checkbox, Form, Input, Select } from "antd";
+import { FC, useEffect } from "react"
+import { QuestionTitlePropsType } from "./interface"
+import { Checkbox, Form, Input, Select } from "antd"
 
 const PropComponent: FC<QuestionTitlePropsType> = ({
   text,
@@ -9,18 +9,18 @@ const PropComponent: FC<QuestionTitlePropsType> = ({
   disabled,
   onChange
 }: QuestionTitlePropsType) => {
-  const [form] = Form.useForm();
+  const [form] = Form.useForm()
 
   function handleValueChange() {
     if (onChange) {
-      onChange(form.getFieldsValue());
+      onChange(form.getFieldsValue())
     }
   }
 
   // 同类组件切换,切换属性值
   useEffect(() => {
-    form.setFieldsValue({ text, level, isCenter });
-  }, [text, level, isCenter]);
+    form.setFieldsValue({ text, level, isCenter })
+  }, [text, level, isCenter])
 
   return (
     <Form
@@ -50,7 +50,7 @@ const PropComponent: FC<QuestionTitlePropsType> = ({
         <Checkbox>居中显示</Checkbox>
       </Form.Item>
     </Form>
-  );
-};
+  )
+}
 
-export default PropComponent;
+export default PropComponent

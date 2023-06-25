@@ -1,18 +1,18 @@
-import type { FC } from "react";
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import { Button, Divider, Space, message } from "antd";
+import type { FC } from "react"
+import { Outlet, useLocation, useNavigate } from "react-router-dom"
+import { Button, Divider, Space, message } from "antd"
 import {
   DeleteOutlined,
   PlusOutlined,
   BarsOutlined,
   StarOutlined
-} from "@ant-design/icons";
-import { createQuestionService } from "@/service/question";
-import { useRequest } from "ahooks";
+} from "@ant-design/icons"
+import { createQuestionService } from "@/service/question"
+import { useRequest } from "ahooks"
 
 const ManageLayout: FC = () => {
-  const navigator = useNavigate();
-  const { pathname } = useLocation();
+  const navigator = useNavigate()
+  const { pathname } = useLocation()
 
   const {
     run: handleCreateClick,
@@ -21,10 +21,10 @@ const ManageLayout: FC = () => {
   } = useRequest(createQuestionService, {
     manual: true,
     onSuccess(res) {
-      navigator(`/question/edit/${res.id}`);
-      message.success("问卷创建成功");
+      navigator(`/question/edit/${res.id}`)
+      message.success("问卷创建成功")
     }
-  });
+  })
 
   return (
     <div className="container max-w-screen-xl mx-auto py-6 flex">
@@ -72,7 +72,7 @@ const ManageLayout: FC = () => {
         <Outlet />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ManageLayout;
+export default ManageLayout

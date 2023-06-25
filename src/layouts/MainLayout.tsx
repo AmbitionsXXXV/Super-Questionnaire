@@ -1,16 +1,16 @@
-import { Layout, Spin } from "antd";
-import type { FC } from "react";
-import { Outlet } from "react-router-dom";
-import Logo from "@/components/Logo/Logo";
-import UserInfo from "@/components/UserInfo/UserInfo";
-import useLoadUserData from "@/hooks/useLoadUserData";
-import useNavPage from "@/hooks/useNavPage";
+import { Layout, Spin } from "antd"
+import type { FC } from "react"
+import { Outlet } from "react-router-dom"
+import Logo from "@/components/Logo/Logo"
+import UserInfo from "@/components/UserInfo/UserInfo"
+import useLoadUserData from "@/hooks/useLoadUserData"
+import useNavPage from "@/hooks/useNavPage"
 
-const { Header, Footer, Content } = Layout;
+const { Header, Footer, Content } = Layout
 
 const MainLayout: FC = () => {
-  const { waitingUserData } = useLoadUserData();
-  useNavPage(waitingUserData);
+  const { waitingUserData } = useLoadUserData()
+  useNavPage(waitingUserData)
 
   return (
     <Layout>
@@ -37,7 +37,7 @@ const MainLayout: FC = () => {
         超级问卷 &copy;.Created by Etcetera
       </Footer>
     </Layout>
-  );
-};
+  )
+}
 
-export default MainLayout;
+export default MainLayout

@@ -1,8 +1,8 @@
-import Component from "./component";
-import PropComponent from "./PropComponent";
-import { QuestionInfoDefaultProps } from "./interface";
+import Component from "./component"
+import PropComponent from "./PropComponent"
+import { QuestionInfoDefaultProps } from "./interface"
 
-export * from "./interface";
+export * from "./interface"
 
 export default {
   title: "问卷信息",
@@ -10,4 +10,4 @@ export default {
   Component,
   PropComponent,
   defaultProps: QuestionInfoDefaultProps
-};
+}

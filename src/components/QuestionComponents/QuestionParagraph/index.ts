@@ -1,8 +1,8 @@
-import Component from "./component";
-import PropComponent from "./PropComponent";
-import { QuestionInputDefaultProps } from "@/components/QuestionComponents/QuestionInput";
+import Component from "./component"
+import PropComponent from "./PropComponent"
+import { QuestionInputDefaultProps } from "@/components/QuestionComponents/QuestionInput"
 
-export * from "./interface";
+export * from "./interface"
 
 export default {
   title: "段落",
@@ -10,4 +10,4 @@ export default {
   defaultProps: QuestionInputDefaultProps,
   Component,
   PropComponent
-};
+}

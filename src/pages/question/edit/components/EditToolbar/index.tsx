@@ -1,48 +1,48 @@
-import type { FC } from "react";
-import { Button, Space, Tooltip } from "antd";
+import type { FC } from "react"
+import { Button, Space, Tooltip } from "antd"
 import {
   BlockOutlined,
   CopyOutlined,
   DeleteOutlined,
   EyeInvisibleOutlined,
   LockOutlined
-} from "@ant-design/icons";
-import { useDispatch } from "react-redux";
+} from "@ant-design/icons"
+import { useDispatch } from "react-redux"
 import {
   changeComponentHidden,
   copySelectedComponent,
   pasteCopiedComponent,
   removeSelectedComponent,
   toggleComponentLocked
-} from "@/store/modules/components";
-import UseGetComponentInfo from "@/hooks/useGetComponentInfo";
+} from "@/store/modules/components"
+import UseGetComponentInfo from "@/hooks/useGetComponentInfo"
 
 const EditToolbox: FC = () => {
-  const dispatch = useDispatch();
-  const { selectedId, selectedComponent, copiedComponent } = UseGetComponentInfo();
+  const dispatch = useDispatch()
+  const { selectedId, selectedComponent, copiedComponent } = UseGetComponentInfo()
 
-  const { isLocked } = selectedComponent || {};
+  const { isLocked } = selectedComponent || {}
 
   function handleDelete() {
-    dispatch(removeSelectedComponent());
+    dispatch(removeSelectedComponent())
   }
 
   function handleHidden() {
-    dispatch(changeComponentHidden({ fe_id: selectedId, isHidden: true }));
+    dispatch(changeComponentHidden({ fe_id: selectedId, isHidden: true }))
   }
 
   function handleLock() {
-    dispatch(toggleComponentLocked({ fe_id: selectedId }));
+    dispatch(toggleComponentLocked({ fe_id: selectedId }))
   }
 
   function handleCopy() {
     // 复制
-    dispatch(copySelectedComponent());
+    dispatch(copySelectedComponent())
   }
 
   function handlePaste() {
     // 粘贴: 是否复制后
-    dispatch(pasteCopiedComponent());
+    dispatch(pasteCopiedComponent())
   }
 
   return (
@@ -77,7 +77,7 @@ const EditToolbox: FC = () => {
         />
       </Tooltip>
     </Space>
-  );
-};
+  )
+}
 
-export default EditToolbox;
+export default EditToolbox

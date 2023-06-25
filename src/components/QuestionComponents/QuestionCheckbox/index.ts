@@ -1,8 +1,8 @@
-import Component from "./component";
-import PropComponent from "./PropComponent";
-import { QuestionCheckboxDefaultProps } from "./interface";
+import Component from "./component"
+import PropComponent from "./PropComponent"
+import { QuestionCheckboxDefaultProps } from "./interface"
 
-export * from "./interface";
+export * from "./interface"
 
 export default {
   title: "多选",
@@ -10,4 +10,4 @@ export default {
   Component,
   PropComponent,
   defaultProps: QuestionCheckboxDefaultProps
-};
+}

@@ -1,11 +1,11 @@
-import type { FC } from "react";
+import type { FC } from "react"
 import {
   QuestionRadioDefaultProps,
   QuestionRadioPropsType
-} from "@/components/QuestionComponents/QuestionRadio/interface";
-import { Radio, Space, Typography } from "antd";
+} from "@/components/QuestionComponents/QuestionRadio/interface"
+import { Radio, Space, Typography } from "antd"
 
-const { Paragraph } = Typography;
+const { Paragraph } = Typography
 const QuestionRadio: FC<QuestionRadioPropsType> = (
   props: QuestionRadioPropsType
 ) => {
@@ -14,7 +14,7 @@ const QuestionRadio: FC<QuestionRadioPropsType> = (
     value,
     options = [],
     isVertical
-  } = { ...QuestionRadioDefaultProps, ...props };
+  } = { ...QuestionRadioDefaultProps, ...props }
 
   return (
     <div>
@@ -22,17 +22,17 @@ const QuestionRadio: FC<QuestionRadioPropsType> = (
       <Radio.Group value={value}>
         <Space direction={isVertical ? "vertical" : "horizontal"}>
           {options.map(option => {
-            const { value, text } = option;
+            const { value, text } = option
             return (
               <Radio key={value} value={value}>
                 {text}
               </Radio>
-            );
+            )
           })}
         </Space>
       </Radio.Group>
     </div>
-  );
-};
+  )
+}
 
-export default QuestionRadio;
+export default QuestionRadio

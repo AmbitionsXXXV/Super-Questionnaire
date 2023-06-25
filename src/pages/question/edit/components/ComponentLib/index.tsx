@@ -1,18 +1,18 @@
 import {
   ComponentConfType,
   componentConfGroup
-} from "@/components/QuestionComponents";
-import { nanoid } from "nanoid";
-import { addComponent } from "@/store/modules/components";
-import { Typography } from "antd";
-import type { FC } from "react";
-import { useDispatch } from "react-redux";
+} from "@/components/QuestionComponents"
+import { nanoid } from "nanoid"
+import { addComponent } from "@/store/modules/components"
+import { Typography } from "antd"
+import type { FC } from "react"
+import { useDispatch } from "react-redux"
 
-const { Title } = Typography;
+const { Title } = Typography
 
 function genComponent(c: ComponentConfType) {
-  const { title, type, Component, defaultProps: props } = c;
-  const dispatch = useDispatch();
+  const { title, type, Component, defaultProps: props } = c
+  const dispatch = useDispatch()
 
   function handleClick() {
     dispatch(
@@ -22,7 +22,7 @@ function genComponent(c: ComponentConfType) {
         title,
         props
       })
-    );
+    )
   }
 
   return (
@@ -35,14 +35,14 @@ function genComponent(c: ComponentConfType) {
         <Component />
       </div>
     </div>
-  );
+  )
 }
 
 const ComponentLib: FC = () => {
   return (
     <div>
       {componentConfGroup.map((group, index) => {
-        const { groupId, groupName, components } = group;
+        const { groupId, groupName, components } = group
 
         return (
           <div key={groupId}>
@@ -54,10 +54,10 @@ const ComponentLib: FC = () => {
             </Title>
             <div>{components.map(c => genComponent(c))}</div>
           </div>
-        );
+        )
       })}
     </div>
-  );
-};
+  )
+}
 
-export default ComponentLib;
+export default ComponentLib

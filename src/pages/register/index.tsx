@@ -1,39 +1,39 @@
-import {} from "react";
-import type { FC } from "react";
-import { UserAddOutlined } from "@ant-design/icons";
-import { Button, Form, Input, Space, Typography, message } from "antd";
-import { Link, useNavigate } from "react-router-dom";
-import { LOGIN_PATHNAME } from "@/router";
-import { useRequest } from "ahooks";
-import { registerService } from "@/service/user";
+import {} from "react"
+import type { FC } from "react"
+import { UserAddOutlined } from "@ant-design/icons"
+import { Button, Form, Input, Space, Typography, message } from "antd"
+import { Link, useNavigate } from "react-router-dom"
+import { LOGIN_PATHNAME } from "@/router"
+import { useRequest } from "ahooks"
+import { registerService } from "@/service/user"
 
-const { Title } = Typography;
+const { Title } = Typography
 
 interface IFormItem {
-  username: string;
-  password: string;
-  confirm: string;
-  nickname: string;
+  username: string
+  password: string
+  confirm: string
+  nickname: string
 }
 
 const Register: FC = () => {
-  const navigator = useNavigate();
+  const navigator = useNavigate()
   const { run } = useRequest(
     async values => {
-      const { username, password, nickname } = values;
-      await registerService(username, password, nickname);
+      const { username, password, nickname } = values
+      await registerService(username, password, nickname)
     },
     {
       manual: true,
       onSuccess() {
-        message.success("注册成功");
-        navigator(LOGIN_PATHNAME);
+        message.success("注册成功")
+        navigator(LOGIN_PATHNAME)
       }
     }
-  );
+  )
 
   function onFinish(values: IFormItem) {
-    run(values);
+    run(values)
   }
 
   return (
@@ -75,9 +75,9 @@ const Register: FC = () => {
               ({ getFieldValue }) => ({
                 validator(_, value) {
                   if (!value || getFieldValue("password") === value) {
-                    return Promise.resolve();
+                    return Promise.resolve()
                   } else {
-                    return Promise.reject(new Error("两次密码不一致"));
+                    return Promise.reject(new Error("两次密码不一致"))
                   }
                 }
               })
@@ -99,7 +99,7 @@ const Register: FC = () => {
         </Form>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Register;
+export default Register

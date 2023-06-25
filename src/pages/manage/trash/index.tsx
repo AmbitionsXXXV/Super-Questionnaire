@@ -1,6 +1,6 @@
-import type { FC } from "react";
-import { useState } from "react";
-import { useRequest, useTitle } from "ahooks";
+import type { FC } from "react"
+import { useState } from "react"
+import { useRequest, useTitle } from "ahooks"
 import {
   Button,
   Empty,
@@ -11,37 +11,37 @@ import {
   Tag,
   Typography,
   message
-} from "antd";
-import { ExclamationCircleOutlined } from "@ant-design/icons";
-import ListSearch from "@/components/ListSearch/ListSearch";
-import useLoadQuestionListData from "@/hooks/useLoadQuestionListData";
-import ListPagination from "@/components/ListPagination/ListPagination";
-import { deleteQuestionsService, updateQuestionService } from "@/service/question";
-import { ColumnsType } from "antd/es/table";
+} from "antd"
+import { ExclamationCircleOutlined } from "@ant-design/icons"
+import ListSearch from "@/components/ListSearch/ListSearch"
+import useLoadQuestionListData from "@/hooks/useLoadQuestionListData"
+import ListPagination from "@/components/ListPagination/ListPagination"
+import { deleteQuestionsService, updateQuestionService } from "@/service/question"
+import { ColumnsType } from "antd/es/table"
 
-const { Title } = Typography;
-const { confirm } = Modal;
+const { Title } = Typography
+const { confirm } = Modal
 
 interface IObject {
-  answerCount: number;
-  createdAt: string;
-  isDeleted: boolean;
-  isPublished: boolean;
-  isStar: boolean;
-  title: string;
-  _id: string;
+  answerCount: number
+  createdAt: string
+  isDeleted: boolean
+  isPublished: boolean
+  isStar: boolean
+  title: string
+  _id: string
 }
 
 const Trash: FC = () => {
-  useTitle("超级问卷 - ♻️回收站");
+  useTitle("超级问卷 - ♻️回收站")
   const {
     data = {},
     loading,
     refresh
-  } = useLoadQuestionListData({ isDeleted: true });
-  const { list = [], total = 0 } = data;
+  } = useLoadQuestionListData({ isDeleted: true })
+  const { list = [], total = 0 } = data
   // 记录 id
-  const [selectedIds, setSelectedIds] = useState<string[]>([]);
+  const [selectedIds, setSelectedIds] = useState<string[]>([])
 
   const columns = [
     {
@@ -58,7 +58,7 @@ const Trash: FC = () => {
           <Tag color="processing">已发布</Tag>
         ) : (
           <Tag color="magenta">未发布</Tag>
-        );
+        )
       }
     },
     {
@@ -71,25 +71,25 @@ const Trash: FC = () => {
       align: "center",
       dataIndex: "createdAt"
     }
-  ];
+  ]
 
   // 恢复
   const { run: recover } = useRequest(
     async () => {
       for await (const id of selectedIds) {
-        await updateQuestionService(id, { isDeleted: false });
+        await updateQuestionService(id, { isDeleted: false })
       }
     },
     {
       manual: true,
       debounceWait: 500, // 防抖
       onSuccess() {
-        message.success("恢复成功");
-        refresh(); // 手动刷新列表
-        setSelectedIds([]);
+        message.success("恢复成功")
+        refresh() // 手动刷新列表
+        setSelectedIds([])
       }
     }
-  );
+  )
 
   // 删除
   const { run: deleteQuestion } = useRequest(
@@ -97,12 +97,12 @@ const Trash: FC = () => {
     {
       manual: true,
       onSuccess() {
-        message.success("删除成功");
-        refresh();
-        setSelectedIds([]);
+        message.success("删除成功")
+        refresh()
+        setSelectedIds([])
       }
     }
-  );
+  )
 
   function Del() {
     confirm({
@@ -112,7 +112,7 @@ const Trash: FC = () => {
       okText: "确认",
       cancelText: "取消",
       onOk: deleteQuestion
-    });
+    })
   }
 
   return (
@@ -156,7 +156,7 @@ const Trash: FC = () => {
               rowSelection={{
                 type: "checkbox",
                 onChange: selectedRowKeys => {
-                  setSelectedIds(selectedRowKeys as string[]);
+                  setSelectedIds(selectedRowKeys as string[])
                 }
               }}
             />
@@ -168,7 +168,7 @@ const Trash: FC = () => {
         {!loading && <ListPagination total={total} />}
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Trash;
+export default Trash

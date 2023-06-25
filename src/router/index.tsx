@@ -1,16 +1,16 @@
-import MainLayout from "@/layouts/MainLayout";
-import ManageLayout from "@/layouts/ManageLayout";
-import QuestionLayout from "@/layouts/QuestionLayout";
-import NotFound from "@/pages/NotFound";
-import Home from "@/pages/home";
-import Login from "@/pages/login";
-import List from "@/pages/manage/List";
-import Star from "@/pages/manage/star";
-import Trash from "@/pages/manage/trash";
-import Edit from "@/pages/question/edit";
-import Stat from "@/pages/question/stat";
-import Register from "@/pages/register";
-import { createBrowserRouter } from "react-router-dom";
+import MainLayout from "@/layouts/MainLayout"
+import ManageLayout from "@/layouts/ManageLayout"
+import QuestionLayout from "@/layouts/QuestionLayout"
+import NotFound from "@/pages/NotFound"
+import Home from "@/pages/home"
+import Login from "@/pages/login"
+import List from "@/pages/manage/List"
+import Star from "@/pages/manage/star"
+import Trash from "@/pages/manage/trash"
+import Edit from "@/pages/question/edit"
+import Stat from "@/pages/question/stat"
+import Register from "@/pages/register"
+import { createBrowserRouter } from "react-router-dom"
 
 const router = createBrowserRouter([
   {
@@ -67,17 +67,17 @@ const router = createBrowserRouter([
       }
     ]
   }
-]);
+])
 
-export const HOME_PATHNAME = "/";
-export const LOGIN_PATHNAME = "/login";
-export const REGISTER_PATHNAME = "/register";
-export const MANAGE_INDEX_PATHNAME = "/manage/list";
-export default router;
+export const HOME_PATHNAME = "/"
+export const LOGIN_PATHNAME = "/login"
+export const REGISTER_PATHNAME = "/register"
+export const MANAGE_INDEX_PATHNAME = "/manage/list"
+export default router
 export function isLoginOrRegister(pathname: string) {
-  return [LOGIN_PATHNAME, REGISTER_PATHNAME].includes(pathname);
+  return [LOGIN_PATHNAME, REGISTER_PATHNAME].includes(pathname)
 }
 
 export function isNoNeedUserInfo(pathname: string) {
-  return [HOME_PATHNAME, LOGIN_PATHNAME, REGISTER_PATHNAME].includes(pathname);
+  return [HOME_PATHNAME, LOGIN_PATHNAME, REGISTER_PATHNAME].includes(pathname)
 }

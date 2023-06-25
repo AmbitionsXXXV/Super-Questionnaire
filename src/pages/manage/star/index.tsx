@@ -1,17 +1,17 @@
-import type { FC } from "react";
-import { useTitle } from "ahooks";
-import { QuestionCard } from "@/components/QuestionCard/QuestionCard";
-import { Empty, Spin, Typography } from "antd";
-import ListSearch from "@/components/ListSearch/ListSearch";
-import useLoadQuestionListData from "@/hooks/useLoadQuestionListData";
-import ListPagination from "@/components/ListPagination/ListPagination";
+import type { FC } from "react"
+import { useTitle } from "ahooks"
+import { QuestionCard } from "@/components/QuestionCard/QuestionCard"
+import { Empty, Spin, Typography } from "antd"
+import ListSearch from "@/components/ListSearch/ListSearch"
+import useLoadQuestionListData from "@/hooks/useLoadQuestionListData"
+import ListPagination from "@/components/ListPagination/ListPagination"
 
-const { Title } = Typography;
+const { Title } = Typography
 
 const Star: FC = () => {
-  useTitle("我的问卷 - 星标问卷");
-  const { data = {}, loading } = useLoadQuestionListData({ isStar: true });
-  const { list = [], total = 0 } = data;
+  useTitle("我的问卷 - 星标问卷")
+  const { data = {}, loading } = useLoadQuestionListData({ isStar: true })
+  const { list = [], total = 0 } = data
 
   return (
     <>
@@ -33,8 +33,8 @@ const Star: FC = () => {
         {!loading &&
           list.length > 0 &&
           list.map((q: any) => {
-            const { _id } = q;
-            return <QuestionCard key={_id} {...q} />;
+            const { _id } = q
+            return <QuestionCard key={_id} {...q} />
           })}
       </div>
 
@@ -42,7 +42,7 @@ const Star: FC = () => {
         {!loading && <ListPagination total={total} />}
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Star;
+export default Star

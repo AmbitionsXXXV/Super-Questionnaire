@@ -1,6 +1,6 @@
-import { useState } from "react";
-import type { FC } from "react";
-import { Button, Divider, Modal, Popconfirm, Space, Tag, message } from "antd";
+import { useState } from "react"
+import type { FC } from "react"
+import { Button, Divider, Modal, Popconfirm, Space, Tag, message } from "antd"
 import {
   CopyOutlined,
   DeleteOutlined,
@@ -9,22 +9,22 @@ import {
   LineChartOutlined,
   StarFilled,
   StarOutlined
-} from "@ant-design/icons";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
-import { useRequest } from "ahooks";
-import { duplicateQuestionService, updateQuestionService } from "@/service/question";
+} from "@ant-design/icons"
+import { useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
+import { useRequest } from "ahooks"
+import { duplicateQuestionService, updateQuestionService } from "@/service/question"
 
 type PropsType = {
-  _id: string;
-  title: string;
-  isStar: boolean;
-  isPublished: boolean;
-  answerCount: number;
-  createdAt: string;
-};
+  _id: string
+  title: string
+  isStar: boolean
+  isPublished: boolean
+  answerCount: number
+  createdAt: string
+}
 
-const { confirm } = Modal;
+const { confirm } = Modal
 
 export const QuestionCard: FC<PropsType> = ({
   _id,
@@ -34,22 +34,22 @@ export const QuestionCard: FC<PropsType> = ({
   isPublished,
   isStar
 }) => {
-  const navigator = useNavigate();
-  const [isStarState, setIsStarState] = useState<boolean>(isStar);
+  const navigator = useNavigate()
+  const [isStarState, setIsStarState] = useState<boolean>(isStar)
 
   // 修改 标星
   const { loading: changeStarLoading, run: changeStar } = useRequest(
     async () => {
-      await updateQuestionService(_id, { isStar: !isStarState });
+      await updateQuestionService(_id, { isStar: !isStarState })
     },
     {
       manual: true,
       onSuccess() {
-        setIsStarState(!isStarState); // 更新 state
-        message.success("已更新");
+        setIsStarState(!isStarState) // 更新 state
+        message.success("已更新")
       }
     }
-  );
+  )
 
   // 复制问卷
   const { loading: duplicateLoading, run: Duplicate } = useRequest(
@@ -57,24 +57,24 @@ export const QuestionCard: FC<PropsType> = ({
     {
       manual: true,
       onSuccess(result) {
-        message.success("复制成功");
-        navigator(`/question/edit/${result.id}`); // 跳转到问卷编辑页
+        message.success("复制成功")
+        navigator(`/question/edit/${result.id}`) // 跳转到问卷编辑页
       }
     }
-  );
+  )
 
   // 删除问卷
-  const [isDeletedState, setIsDeletedState] = useState(false);
+  const [isDeletedState, setIsDeletedState] = useState(false)
   const { loading: deleteLoading, run: deleteQuestion } = useRequest(
     async () => await updateQuestionService(_id, { isDeleted: true }),
     {
       manual: true,
       onSuccess() {
-        message.success("删除成功");
-        setIsDeletedState(true);
+        message.success("删除成功")
+        setIsDeletedState(true)
       }
     }
-  );
+  )
 
   function Del() {
     confirm({
@@ -83,11 +83,11 @@ export const QuestionCard: FC<PropsType> = ({
       okText: "确认",
       cancelText: "取消",
       onOk: deleteQuestion
-    });
+    })
   }
 
   // 已经删除的问卷，不要再渲染卡片了
-  if (isDeletedState) return null;
+  if (isDeletedState) return null
 
   return (
     <>
@@ -179,5 +179,5 @@ export const QuestionCard: FC<PropsType> = ({
         </div>
       </div>
     </>
-  );
-};
+  )
+}

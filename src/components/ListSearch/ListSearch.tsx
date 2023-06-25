@@ -1,35 +1,35 @@
-import { useEffect, useState } from "react";
-import type { FC, ChangeEvent } from "react";
-import { Input } from "antd";
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
-import { LIST_SEARCH_PARAM_KEY } from "@/constant";
+import { useEffect, useState } from "react"
+import type { FC, ChangeEvent } from "react"
+import { Input } from "antd"
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom"
+import { LIST_SEARCH_PARAM_KEY } from "@/constant"
 
-const { Search } = Input;
+const { Search } = Input
 
 const ListSearch: FC = () => {
-  const navigator = useNavigate();
-  const { pathname } = useLocation();
+  const navigator = useNavigate()
+  const { pathname } = useLocation()
   // 获取 url 参数
-  const [searchParams] = useSearchParams();
+  const [searchParams] = useSearchParams()
 
-  const [value, setValue] = useState<string>("");
+  const [value, setValue] = useState<string>("")
 
   function changeHandler(event: ChangeEvent<HTMLInputElement>) {
-    setValue(event.target.value);
+    setValue(event.target.value)
   }
 
   function searchHandler(value: string) {
     navigator({
       pathname,
       search: `${LIST_SEARCH_PARAM_KEY}=${value}`
-    });
+    })
   }
 
   // 设置 url 参数作为 Input的 value
   useEffect(() => {
-    const newValue = searchParams.get(LIST_SEARCH_PARAM_KEY) ?? "";
-    setValue(newValue);
-  }, [searchParams]);
+    const newValue = searchParams.get(LIST_SEARCH_PARAM_KEY) ?? ""
+    setValue(newValue)
+  }, [searchParams])
 
   return (
     <>
@@ -43,7 +43,7 @@ const ListSearch: FC = () => {
         onChange={changeHandler}
       />
     </>
-  );
-};
+  )
+}
 
-export default ListSearch;
+export default ListSearch

@@ -1,8 +1,8 @@
-import Component from "./component";
-import { QuestionTitleDefaultProps } from "./interface";
-import PropComponent from "./PropComponent";
+import Component from "./component"
+import { QuestionTitleDefaultProps } from "./interface"
+import PropComponent from "./PropComponent"
 
-export * from "./interface";
+export * from "./interface"
 
 export default {
   title: "标题",
@@ -10,4 +10,4 @@ export default {
   defaultProps: QuestionTitleDefaultProps,
   Component,
   PropComponent
-};
+}

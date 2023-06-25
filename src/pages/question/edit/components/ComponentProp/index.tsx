@@ -1,33 +1,33 @@
-import type { FC } from "react";
-import useGetComponentInfo from "@/hooks/useGetComponentInfo";
+import type { FC } from "react"
+import useGetComponentInfo from "@/hooks/useGetComponentInfo"
 import {
   ComponentPropsType,
   getComponentConfByType
-} from "@/components/QuestionComponents";
-import { useDispatch } from "react-redux";
-import { changeComponentProps } from "@/store/modules/components";
+} from "@/components/QuestionComponents"
+import { useDispatch } from "react-redux"
+import { changeComponentProps } from "@/store/modules/components"
 
 const NoProp: FC = () => {
-  return <div className="text-center">未选中组件</div>;
-};
+  return <div className="text-center">未选中组件</div>
+}
 
 const ComponentProp: FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-  const { selectedComponent } = useGetComponentInfo();
-  if (selectedComponent == null) return <NoProp />;
+  const { selectedComponent } = useGetComponentInfo()
+  if (selectedComponent == null) return <NoProp />
 
-  const { type, props, isLocked, isHidden } = selectedComponent;
-  const componentConf = getComponentConfByType(type);
-  if (componentConf == null) return <NoProp />;
+  const { type, props, isLocked, isHidden } = selectedComponent
+  const componentConf = getComponentConfByType(type)
+  if (componentConf == null) return <NoProp />
 
-  const { PropComponent } = componentConf;
+  const { PropComponent } = componentConf
 
   function changeProps(newProps: ComponentPropsType) {
-    if (selectedComponent == null) return;
-    const { fe_id } = selectedComponent;
+    if (selectedComponent == null) return
+    const { fe_id } = selectedComponent
 
-    dispatch(changeComponentProps({ fe_id, newProps }));
+    dispatch(changeComponentProps({ fe_id, newProps }))
   }
 
   return (
@@ -36,7 +36,7 @@ const ComponentProp: FC = () => {
       disabled={isLocked || isHidden}
       onChange={changeProps}
     />
-  );
-};
+  )
+}
 
-export default ComponentProp;
+export default ComponentProp

@@ -1,7 +1,7 @@
-import type { FC } from "react";
-import { Tabs } from "antd";
-import { AppstoreOutlined, BarsOutlined } from "@ant-design/icons";
-import ComponentLib from "../ComponentLib";
+import type { FC } from "react"
+import { Tabs } from "antd"
+import { AppstoreOutlined, BarsOutlined } from "@ant-design/icons"
+import ComponentLib from "../ComponentLib"
 
 const LeftPanel: FC = () => {
   const tabsItems = [
@@ -25,9 +25,9 @@ const LeftPanel: FC = () => {
       ),
       children: <div>图层</div>
     }
-  ];
+  ]
 
-  return <Tabs items={tabsItems} defaultActiveKey="componentLib" />;
-};
+  return <Tabs items={tabsItems} defaultActiveKey="componentLib" />
+}
 
-export default LeftPanel;
+export default LeftPanel

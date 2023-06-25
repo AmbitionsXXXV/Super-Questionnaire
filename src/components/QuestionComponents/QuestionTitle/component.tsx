@@ -1,8 +1,8 @@
-import { FC } from "react";
-import { QuestionTitleDefaultProps, QuestionTitlePropsType } from "./interface";
-import { Typography } from "antd";
+import { FC } from "react"
+import { QuestionTitleDefaultProps, QuestionTitlePropsType } from "./interface"
+import { Typography } from "antd"
 
-const { Title } = Typography;
+const { Title } = Typography
 
 const QuestionTitle: FC<QuestionTitlePropsType> = (
   props: QuestionTitlePropsType
@@ -11,20 +11,20 @@ const QuestionTitle: FC<QuestionTitlePropsType> = (
     text = "",
     level = 1,
     isCenter = false
-  } = { ...QuestionTitleDefaultProps, ...props };
+  } = { ...QuestionTitleDefaultProps, ...props }
 
   const getFontSize = (level: number) => {
     switch (level) {
       case 1:
-        return "24px";
+        return "24px"
       case 2:
-        return "20px";
+        return "20px"
       case 3:
-        return "16px";
+        return "16px"
       default:
-        return "16px";
+        return "16px"
     }
-  };
+  }
 
   return (
     <Title
@@ -35,7 +35,7 @@ const QuestionTitle: FC<QuestionTitlePropsType> = (
     >
       {text}
     </Title>
-  );
-};
+  )
+}
 
-export default QuestionTitle;
+export default QuestionTitle

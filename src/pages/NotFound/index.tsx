@@ -1,10 +1,10 @@
-import { MANAGE_INDEX_PATHNAME } from "@/router";
-import { Button, Result } from "antd";
-import { useNavigate } from "react-router-dom";
-import type { FC } from "react";
+import { MANAGE_INDEX_PATHNAME } from "@/router"
+import { Button, Result } from "antd"
+import { useNavigate } from "react-router-dom"
+import type { FC } from "react"
 
 const NotFound: FC = () => {
-  const navigator = useNavigate();
+  const navigator = useNavigate()
 
   return (
     <Result
@@ -17,7 +17,7 @@ const NotFound: FC = () => {
         </Button>
       }
     />
-  );
-};
+  )
+}
 
-export default NotFound;
+export default NotFound

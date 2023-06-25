@@ -1,6 +1,6 @@
-import { FC } from "react";
-import { QuestionParagraphPropsType } from "@/components/QuestionComponents/QuestionParagraph/interface";
-import { Typography } from "antd";
+import { FC } from "react"
+import { QuestionParagraphPropsType } from "@/components/QuestionComponents/QuestionParagraph/interface"
+import { Typography } from "antd"
 
 const QuestionParagraph: FC<QuestionParagraphPropsType> = ({
   text = "",
@@ -8,7 +8,7 @@ const QuestionParagraph: FC<QuestionParagraphPropsType> = ({
 }) => {
   // ⚠️危险方法
   // const newText = text.replaceAll("\n", "<br>");
-  const newText = text.split("\n");
+  const newText = text.split("\n")
 
   return (
     <Typography className={`${isCenter ? "text-center" : "text-start"} mb-0`}>
@@ -21,7 +21,7 @@ const QuestionParagraph: FC<QuestionParagraphPropsType> = ({
         </span>
       ))}
     </Typography>
-  );
-};
+  )
+}
 
-export default QuestionParagraph;
+export default QuestionParagraph

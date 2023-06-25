@@ -1,7 +1,7 @@
-import { FC, useEffect } from "react";
-import { QuestionTextareaPropsType } from "./interface";
-import { Form, Input } from "antd";
-import { useForm } from "antd/es/form/Form";
+import { FC, useEffect } from "react"
+import { QuestionTextareaPropsType } from "./interface"
+import { Form, Input } from "antd"
+import { useForm } from "antd/es/form/Form"
 
 const PropComponent: FC<QuestionTextareaPropsType> = ({
   title,
@@ -9,18 +9,18 @@ const PropComponent: FC<QuestionTextareaPropsType> = ({
   placeholder,
   onChange
 }: QuestionTextareaPropsType) => {
-  const [form] = useForm();
+  const [form] = useForm()
 
   function handleValueChange() {
     if (onChange) {
-      onChange(form.getFieldsValue());
+      onChange(form.getFieldsValue())
     }
   }
 
   // 同类组件切换,切换属性值
   useEffect(() => {
-    form.setFieldsValue({ title, placeholder });
-  }, [title, placeholder]);
+    form.setFieldsValue({ title, placeholder })
+  }, [title, placeholder])
 
   return (
     <Form
@@ -41,7 +41,7 @@ const PropComponent: FC<QuestionTextareaPropsType> = ({
         <Input />
       </Form.Item>
     </Form>
-  );
-};
+  )
+}
 
-export default PropComponent;
+export default PropComponent

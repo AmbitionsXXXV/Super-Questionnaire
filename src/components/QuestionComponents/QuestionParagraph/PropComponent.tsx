@@ -1,8 +1,8 @@
-import { FC, useEffect } from "react";
-import { QuestionParagraphPropsType } from "@/components/QuestionComponents/QuestionParagraph/interface";
-import { Checkbox, Form, Input } from "antd";
+import { FC, useEffect } from "react"
+import { QuestionParagraphPropsType } from "@/components/QuestionComponents/QuestionParagraph/interface"
+import { Checkbox, Form, Input } from "antd"
 
-const { TextArea } = Input;
+const { TextArea } = Input
 
 const PropComponent: FC<QuestionParagraphPropsType> = ({
   text,
@@ -10,17 +10,17 @@ const PropComponent: FC<QuestionParagraphPropsType> = ({
   disabled,
   onChange
 }) => {
-  const [form] = Form.useForm();
+  const [form] = Form.useForm()
 
   function handleValuesChange() {
     if (onChange) {
-      onChange(form.getFieldsValue());
+      onChange(form.getFieldsValue())
     }
   }
 
   useEffect(() => {
-    form.setFieldsValue({ text, isCenter });
-  }, [text, isCenter]);
+    form.setFieldsValue({ text, isCenter })
+  }, [text, isCenter])
 
   return (
     <Form
@@ -41,7 +41,7 @@ const PropComponent: FC<QuestionParagraphPropsType> = ({
         <Checkbox>居中显示</Checkbox>
       </Form.Item>
     </Form>
-  );
-};
+  )
+}
 
-export default PropComponent;
+export default PropComponent

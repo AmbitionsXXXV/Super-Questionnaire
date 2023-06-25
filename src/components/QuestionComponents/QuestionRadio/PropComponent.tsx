@@ -1,10 +1,10 @@
-import type { FC } from "react";
-import { useEffect } from "react";
-import { OptionType, QuestionRadioPropsType } from "./interface";
-import { Button, Checkbox, Form, Input, Select, Space } from "antd";
-import { useForm } from "antd/es/form/Form";
-import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
-import { nanoid } from "nanoid";
+import type { FC } from "react"
+import { useEffect } from "react"
+import { OptionType, QuestionRadioPropsType } from "./interface"
+import { Button, Checkbox, Form, Input, Select, Space } from "antd"
+import { useForm } from "antd/es/form/Form"
+import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons"
+import { nanoid } from "nanoid"
 
 const PropComponent: FC<QuestionRadioPropsType> = ({
   title,
@@ -14,27 +14,27 @@ const PropComponent: FC<QuestionRadioPropsType> = ({
   isVertical,
   onChange
 }) => {
-  const [form] = useForm();
+  const [form] = useForm()
   useEffect(() => {
-    form.setFieldsValue({ title, value, isVertical, options });
-  }, [title, value, isVertical, options]);
+    form.setFieldsValue({ title, value, isVertical, options })
+  }, [title, value, isVertical, options])
 
   function handleValuesChange() {
-    if (onChange == null) return;
-    const newValues = form.getFieldsValue() as QuestionRadioPropsType;
+    if (onChange == null) return
+    const newValues = form.getFieldsValue() as QuestionRadioPropsType
 
     if (newValues.options) {
       // 需要清除 text undefined 的选项
-      newValues.options = newValues.options.filter(opt => !(opt.text == null));
+      newValues.options = newValues.options.filter(opt => !(opt.text == null))
     }
 
-    const { options = [] } = newValues;
+    const { options = [] } = newValues
     options.forEach(opt => {
-      if (opt.value) return;
-      opt.value = nanoid(5);
-    });
+      if (opt.value) return
+      opt.value = nanoid(5)
+    })
 
-    onChange(newValues);
+    onChange(newValues)
   }
 
   return (
@@ -67,13 +67,13 @@ const PropComponent: FC<QuestionRadioPropsType> = ({
                         { required: true, message: "请输入选项文字" },
                         {
                           validator: (_, text) => {
-                            const { options = [] } = form.getFieldsValue();
-                            let num = 0;
+                            const { options = [] } = form.getFieldsValue()
+                            let num = 0
                             options.forEach((option: OptionType) => {
-                              if (option.text === text) num++; // 记录 text 相同的个数
-                            });
-                            if (num === 0) return Promise.resolve();
-                            return Promise.reject(new Error("有重复选项"));
+                              if (option.text === text) num++ // 记录 text 相同的个数
+                            })
+                            if (num === 0) return Promise.resolve()
+                            return Promise.reject(new Error("有重复选项"))
                           }
                         }
                       ]}
@@ -86,7 +86,7 @@ const PropComponent: FC<QuestionRadioPropsType> = ({
                       <MinusCircleOutlined onClick={() => remove(name)} />
                     )}
                   </Space>
-                );
+                )
               })}
 
               {/* 添加选项 */}
@@ -114,7 +114,7 @@ const PropComponent: FC<QuestionRadioPropsType> = ({
         <Checkbox>竖向排列</Checkbox>
       </Form.Item>
     </Form>
-  );
-};
+  )
+}
 
-export default PropComponent;
+export default PropComponent

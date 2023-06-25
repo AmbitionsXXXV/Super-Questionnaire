@@ -1,8 +1,8 @@
-import { FC, useEffect } from "react";
-import { QuestionInfoPropsType } from "@/components/QuestionComponents/QuestionInfo/interface";
-import { Form, Input } from "antd";
+import { FC, useEffect } from "react"
+import { QuestionInfoPropsType } from "@/components/QuestionComponents/QuestionInfo/interface"
+import { Form, Input } from "antd"
 
-const { TextArea } = Input;
+const { TextArea } = Input
 
 const PropComponent: FC<QuestionInfoPropsType> = ({
   title,
@@ -10,17 +10,17 @@ const PropComponent: FC<QuestionInfoPropsType> = ({
   disabled,
   onChange
 }) => {
-  const [form] = Form.useForm();
+  const [form] = Form.useForm()
 
   function handleValuesChange() {
     if (onChange) {
-      onChange(form.getFieldsValue());
+      onChange(form.getFieldsValue())
     }
   }
 
   useEffect(() => {
-    form.setFieldsValue({ title, desc });
-  }, [title, desc]);
+    form.setFieldsValue({ title, desc })
+  }, [title, desc])
 
   return (
     <Form
@@ -41,7 +41,7 @@ const PropComponent: FC<QuestionInfoPropsType> = ({
         <TextArea />
       </Form.Item>
     </Form>
-  );
-};
+  )
+}
 
-export default PropComponent;
+export default PropComponent

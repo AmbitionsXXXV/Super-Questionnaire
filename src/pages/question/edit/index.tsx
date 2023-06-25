@@ -1,15 +1,15 @@
-import type { FC } from "react";
-import useLoadQuestionData from "@/hooks/useLoadQuestionData";
-import { useDispatch } from "react-redux";
-import { changeSelectedId } from "@/store/modules/components";
-import { EditCanvas, EditHeader, LeftPanel, RightPanel } from "./components";
+import type { FC } from "react"
+import useLoadQuestionData from "@/hooks/useLoadQuestionData"
+import { useDispatch } from "react-redux"
+import { changeSelectedId } from "@/store/modules/components"
+import { EditCanvas, EditHeader, LeftPanel, RightPanel } from "./components"
 
 const Edit: FC = () => {
-  const dispatch = useDispatch();
-  const { loading } = useLoadQuestionData();
+  const dispatch = useDispatch()
+  const { loading } = useLoadQuestionData()
 
   function clearSelectedId() {
-    dispatch(changeSelectedId(""));
+    dispatch(changeSelectedId(""))
   }
 
   return (
@@ -34,7 +34,7 @@ const Edit: FC = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Edit;
+export default Edit

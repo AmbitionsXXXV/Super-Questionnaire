@@ -1,17 +1,17 @@
 export type OptionType = {
-  value: string;
-  text: string;
-  checked: boolean;
-};
+  value: string
+  text: string
+  checked: boolean
+}
 
 export type QuestionCheckboxPropsType = {
-  title?: string;
-  isVertical?: boolean;
-  list?: OptionType[];
-  disabled?: boolean;
+  title?: string
+  isVertical?: boolean
+  list?: OptionType[]
+  disabled?: boolean
 
-  onChange?: (newProps: QuestionCheckboxPropsType) => void;
-};
+  onChange?: (newProps: QuestionCheckboxPropsType) => void
+}
 
 export const QuestionCheckboxDefaultProps: QuestionCheckboxPropsType = {
   title: "多选标题",
@@ -21,4 +21,4 @@ export const QuestionCheckboxDefaultProps: QuestionCheckboxPropsType = {
     { value: "item2", text: "选项2", checked: false },
     { value: "item3", text: "选项3", checked: false }
   ]
-};
+}

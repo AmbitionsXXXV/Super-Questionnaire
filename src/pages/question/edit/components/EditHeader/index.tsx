@@ -1,13 +1,13 @@
-import type { FC } from "react";
-import { Button, Space, Typography } from "antd";
-import { LeftOutlined } from "@ant-design/icons";
-import { useNavigate } from "react-router-dom";
-import EditToolbar from "../EditToolbar";
+import type { FC } from "react"
+import { Button, Space, Typography } from "antd"
+import { LeftOutlined } from "@ant-design/icons"
+import { useNavigate } from "react-router-dom"
+import EditToolbar from "../EditToolbar"
 
-const { Title } = Typography;
+const { Title } = Typography
 
 const EditHeader: FC = () => {
-  const navigator = useNavigate();
+  const navigator = useNavigate()
 
   return (
     <div className="bg-white border-b border-b-slate-200 px-0 py-3">
@@ -35,7 +35,7 @@ const EditHeader: FC = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default EditHeader;
+export default EditHeader

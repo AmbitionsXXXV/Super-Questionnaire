@@ -1,31 +1,31 @@
-import { type FC } from "react";
-import { Button, Checkbox, Form, Input, Space } from "antd";
-import { nanoid } from "nanoid";
-import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
-import { OptionType, QuestionCheckboxPropsType } from "./interface";
+import { type FC } from "react"
+import { Button, Checkbox, Form, Input, Space } from "antd"
+import { nanoid } from "nanoid"
+import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons"
+import { OptionType, QuestionCheckboxPropsType } from "./interface"
 
 const PropComponent: FC<QuestionCheckboxPropsType> = (
   props: QuestionCheckboxPropsType
 ) => {
-  const { title, isVertical, list = [], onChange, disabled } = props;
-  const [form] = Form.useForm();
+  const { title, isVertical, list = [], onChange, disabled } = props
+  const [form] = Form.useForm()
 
   function handleValuesChange() {
-    if (onChange == null) return;
+    if (onChange == null) return
 
-    const newValues = form.getFieldsValue() as QuestionCheckboxPropsType;
+    const newValues = form.getFieldsValue() as QuestionCheckboxPropsType
 
     if (newValues.list) {
-      newValues.list = newValues.list.filter(opt => !(opt.text == null));
+      newValues.list = newValues.list.filter(opt => !(opt.text == null))
     }
 
-    const { list = [] } = newValues;
+    const { list = [] } = newValues
     list.forEach(opt => {
-      if (opt.value) return;
-      opt.value = nanoid(5);
-    });
+      if (opt.value) return
+      opt.value = nanoid(5)
+    })
 
-    onChange(newValues);
+    onChange(newValues)
   }
 
   return (
@@ -62,13 +62,13 @@ const PropComponent: FC<QuestionCheckboxPropsType> = (
                         { required: true, message: "请输入选项文字" },
                         {
                           validator: (_, text) => {
-                            const { list = [] } = form.getFieldsValue();
-                            let num = 0;
+                            const { list = [] } = form.getFieldsValue()
+                            let num = 0
                             list.forEach((opt: OptionType) => {
-                              if (opt.text === text) num++; // 记录 text 相同的个数，预期只有 1 个（自己）
-                            });
-                            if (num === 1) return Promise.resolve();
-                            return Promise.reject(new Error("和其他选项重复了"));
+                              if (opt.text === text) num++ // 记录 text 相同的个数，预期只有 1 个（自己）
+                            })
+                            if (num === 1) return Promise.resolve()
+                            return Promise.reject(new Error("和其他选项重复了"))
                           }
                         }
                       ]}
@@ -81,7 +81,7 @@ const PropComponent: FC<QuestionCheckboxPropsType> = (
                       <MinusCircleOutlined onClick={() => remove(name)} />
                     )}
                   </Space>
-                );
+                )
               })}
 
               {/* 添加选项 */}
@@ -103,7 +103,7 @@ const PropComponent: FC<QuestionCheckboxPropsType> = (
         <Checkbox>竖向排列</Checkbox>
       </Form.Item>
     </Form>
-  );
-};
+  )
+}
 
-export default PropComponent;
+export default PropComponent

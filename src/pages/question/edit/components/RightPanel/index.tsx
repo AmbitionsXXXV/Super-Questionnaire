@@ -1,7 +1,7 @@
-import type { FC } from "react";
-import { Tabs } from "antd";
-import { FileTextOutlined, SettingOutlined } from "@ant-design/icons";
-import ComponentProp from "@/pages/question/edit/components/ComponentProp";
+import type { FC } from "react"
+import { Tabs } from "antd"
+import { FileTextOutlined, SettingOutlined } from "@ant-design/icons"
+import ComponentProp from "@/pages/question/edit/components/ComponentProp"
 
 const RightPanel: FC = () => {
   const tabsItems = [
@@ -25,9 +25,9 @@ const RightPanel: FC = () => {
       ),
       children: <div>页面设置</div>
     }
-  ];
+  ]
 
-  return <Tabs items={tabsItems} defaultActiveKey="prop" />;
-};
+  return <Tabs items={tabsItems} defaultActiveKey="prop" />
+}
 
-export default RightPanel;
+export default RightPanel

@@ -3,16 +3,16 @@
  * @author etcetera
  */
 
-const KEY = "USER_TOKEN";
+const KEY = "USER_TOKEN"
 
 export function setToken(token: string) {
-  localStorage.setItem(KEY, token);
+  localStorage.setItem(KEY, token)
 }
 
 export function getToken() {
-  return localStorage.getItem(KEY) || "";
+  return localStorage.getItem(KEY) || ""
 }
 
 export function removeToken() {
-  localStorage.removeItem(KEY);
+  localStorage.removeItem(KEY)
 }

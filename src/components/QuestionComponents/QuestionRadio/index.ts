@@ -1,8 +1,8 @@
-import Component from "./component";
-import PropComponent from "./PropComponent";
-import { QuestionRadioDefaultProps } from "./interface";
+import Component from "./component"
+import PropComponent from "./PropComponent"
+import { QuestionRadioDefaultProps } from "./interface"
 
-export * from "./interface";
+export * from "./interface"
 
 export default {
   title: "单选",
@@ -10,4 +10,4 @@ export default {
   defaultProps: QuestionRadioDefaultProps,
   Component,
   PropComponent
-};
+}

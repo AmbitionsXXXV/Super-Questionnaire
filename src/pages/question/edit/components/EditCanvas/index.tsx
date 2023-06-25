@@ -1,44 +1,44 @@
-import { Spin } from "antd";
-import { useDispatch } from "react-redux";
-import type { FC, MouseEvent } from "react";
-import useGetComponentInfo from "@/hooks/useGetComponentInfo";
-import useBindCanvasKeyPress from "@/hooks/useBindCanvasKeyPress";
-import { ComponentsInfoType, changeSelectedId } from "@/store/modules/components";
-import { getComponentConfByType } from "@/components/QuestionComponents";
+import { Spin } from "antd"
+import { useDispatch } from "react-redux"
+import type { FC, MouseEvent } from "react"
+import useGetComponentInfo from "@/hooks/useGetComponentInfo"
+import useBindCanvasKeyPress from "@/hooks/useBindCanvasKeyPress"
+import { ComponentsInfoType, changeSelectedId } from "@/store/modules/components"
+import { getComponentConfByType } from "@/components/QuestionComponents"
 
 type PropsType = {
-  loading: boolean;
-};
+  loading: boolean
+}
 
 function genComponent(componentInfo: ComponentsInfoType) {
-  const { type, props } = componentInfo;
-  const componentConf = getComponentConfByType(type);
+  const { type, props } = componentInfo
+  const componentConf = getComponentConfByType(type)
 
-  if (componentConf == null) return null;
-  const { Component } = componentConf;
+  if (componentConf == null) return null
+  const { Component } = componentConf
 
-  return <Component {...props} />;
+  return <Component {...props} />
 }
 
 const EditCanvas: FC<PropsType> = ({ loading }) => {
-  const { componentList, selectedId } = useGetComponentInfo();
-  const dispatch = useDispatch();
+  const { componentList, selectedId } = useGetComponentInfo()
+  const dispatch = useDispatch()
 
   function handleClick(e: MouseEvent, id: string) {
     // 阻止事件冒泡
-    e.stopPropagation();
-    dispatch(changeSelectedId(id));
+    e.stopPropagation()
+    dispatch(changeSelectedId(id))
   }
 
   // 绑定快捷键
-  useBindCanvasKeyPress();
+  useBindCanvasKeyPress()
 
   if (loading) {
     return (
       <div className="text-center mt-6">
         <Spin />
       </div>
-    );
+    )
   }
 
   return (
@@ -46,7 +46,7 @@ const EditCanvas: FC<PropsType> = ({ loading }) => {
       {componentList
         .filter(c => !c.isHidden)
         .map(c => {
-          const { fe_id, isLocked } = c;
+          const { fe_id, isLocked } = c
 
           return (
             <div
@@ -60,10 +60,10 @@ const EditCanvas: FC<PropsType> = ({ loading }) => {
             >
               <div className="pointer-events-none">{genComponent(c)}</div>
             </div>
-          );
+          )
         })}
     </div>
-  );
-};
+  )
+}
 
-export default EditCanvas;
+export default EditCanvas
