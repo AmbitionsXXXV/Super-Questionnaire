@@ -17,4 +17,4 @@ export default {
     preflight: false
   },
   important: true
-};
+}
