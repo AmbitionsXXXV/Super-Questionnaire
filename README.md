@@ -1,6 +1,6 @@
 # About this project
 
-一个练手的实现低代码逻辑过程的B端项目
+一个练手的实现低代码逻辑过程的 B 端项目
 
 ## Start this project
 
@@ -11,5 +11,4 @@ pnpm install
 pnpm dev
 ```
 
-## Main Code
-`/src`directory
+## [Mock data: Questionnaire-Mock-Data](https://github.com/AmbitionsXXXV/Questionnaire-Mock-Data)
