@@ -25,7 +25,7 @@ const MainLayout: FC = () => {
       <Layout className="l-main">
         <Content>
           {waitingUserData ? (
-            <div className="text-center mt-15">
+            <div className="h-full w-full text-center mt-15 flex justify-center items-center">
               <Spin />
             </div>
           ) : (

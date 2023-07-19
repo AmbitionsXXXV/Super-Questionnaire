@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux"
 import type { FC, MouseEvent } from "react"
 import useGetComponentInfo from "@/hooks/useGetComponentInfo"
 import useBindCanvasKeyPress from "@/hooks/useBindCanvasKeyPress"
-import { ComponentsInfoType, changeSelectedId } from "@/store/modules/components"
+import { changeSelectedId, ComponentsInfoType } from "@/store/modules/components"
 import { getComponentConfByType } from "@/components/QuestionComponents"
 
 type PropsType = {
@@ -35,7 +35,7 @@ const EditCanvas: FC<PropsType> = ({ loading }) => {
 
   if (loading) {
     return (
-      <div className="text-center mt-6">
+      <div className="text-center mt-6 flex items-center justify-center h-full w-full">
         <Spin />
       </div>
     )

@@ -13,7 +13,7 @@ const QuestionLayout: FC = () => {
   return (
     <div className="h-screen">
       {waitingUserData ? (
-        <div className="text-center mt-15">
+        <div className="text-center mt-15 flex justify-center items-center h-full w-full">
           <Spin />
         </div>
       ) : (

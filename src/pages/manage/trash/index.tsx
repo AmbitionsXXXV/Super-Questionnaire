@@ -4,13 +4,13 @@ import { useRequest, useTitle } from "ahooks"
 import {
   Button,
   Empty,
+  message,
   Modal,
   Space,
   Spin,
   Table,
   Tag,
-  Typography,
-  message
+  Typography
 } from "antd"
 import { ExclamationCircleOutlined } from "@ant-design/icons"
 import ListSearch from "@/components/ListSearch/ListSearch"
@@ -127,7 +127,7 @@ const Trash: FC = () => {
       </div>
       <div className="mb-5">
         {loading && (
-          <div className="text-center">
+          <div className="text-center flex items-center justify-center h-full w-full">
             <Spin />
           </div>
         )}

@@ -1,11 +1,11 @@
-import { FC, useEffect, useMemo, useRef, useState } from "react"
-import { useDebounceFn, useRequest, useTitle } from "ahooks"
-import { QuestionCard } from "@/components/QuestionCard/QuestionCard"
-import { Empty, Spin, Typography } from "antd"
-import ListSearch from "@/components/ListSearch/ListSearch"
-import { useSearchParams } from "react-router-dom"
-import { LIST_PAGE_SIZE, LIST_SEARCH_PARAM_KEY } from "@/constant"
-import { getQuestionListService } from "@/service/question"
+import { FC, useEffect, useMemo, useRef, useState } from "react";
+import { useDebounceFn, useRequest, useTitle } from "ahooks";
+import { QuestionCard } from "@/components/QuestionCard/QuestionCard";
+import { Empty, Spin, Typography } from "antd";
+import ListSearch from "@/components/ListSearch/ListSearch";
+import { useSearchParams } from "react-router-dom";
+import { LIST_PAGE_SIZE, LIST_SEARCH_PARAM_KEY } from "@/constant";
+import { getQuestionListService } from "@/service/question";
 
 const { Title } = Typography
 
@@ -22,14 +22,12 @@ const List: FC = () => {
 
   // 真正加载
   const { run: load, loading } = useRequest(
-    async () => {
-      const data = await getQuestionListService({
+    async () =>
+      await getQuestionListService({
         page,
         pageSize: LIST_PAGE_SIZE,
         keyword
-      })
-      return data
-    },
+      }),
     {
       manual: true,
       onSuccess(result) {
@@ -86,11 +84,17 @@ const List: FC = () => {
 
   // LoadMore Elem
   const LoadMoreContentElem = useMemo(() => {
-    if (!started || loading) return <Spin />
-    if (total === 0) return <Empty description="暂无数据" />
-    if (!haveMoreData) return <span>没有更多了...</span>
-    return <span>开始加载下一页</span>
-  }, [started, loading, haveMoreData])
+    if (!started || loading)
+      return (
+        <div className="flex items-center justify-center h-full w-full">
+          <Spin />
+        </div>
+      )
+   ; if (total === 0) return <Empty description="暂无数据" />
+   ; if (!haveMoreData) return <span>没有更多了...</span>
+
+  ;  return <span>开始加载下一页</span>
+  };, [started, loading, haveMoreData])
 
   return (
     <>
