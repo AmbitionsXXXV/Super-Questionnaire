@@ -1,11 +1,11 @@
-import { FC, useEffect, useMemo, useRef, useState } from "react";
-import { useDebounceFn, useRequest, useTitle } from "ahooks";
-import { QuestionCard } from "@/components/QuestionCard/QuestionCard";
-import { Empty, Spin, Typography } from "antd";
-import ListSearch from "@/components/ListSearch/ListSearch";
-import { useSearchParams } from "react-router-dom";
-import { LIST_PAGE_SIZE, LIST_SEARCH_PARAM_KEY } from "@/constant";
-import { getQuestionListService } from "@/service/question";
+import { FC, useEffect, useMemo, useRef, useState } from "react"
+import { useDebounceFn, useRequest, useTitle } from "ahooks"
+import { QuestionCard } from "@/components/QuestionCard/QuestionCard"
+import { Empty, Spin, Typography } from "antd"
+import ListSearch from "@/components/ListSearch/ListSearch"
+import { useSearchParams } from "react-router-dom"
+import { LIST_PAGE_SIZE, LIST_SEARCH_PARAM_KEY } from "@/constant"
+import { getQuestionListService } from "@/service/question"
 
 const { Title } = Typography
 
@@ -90,11 +90,11 @@ const List: FC = () => {
           <Spin />
         </div>
       )
-   ; if (total === 0) return <Empty description="暂无数据" />
-   ; if (!haveMoreData) return <span>没有更多了...</span>
+    if (total === 0) return <Empty description="暂无数据" />
+    if (!haveMoreData) return <span>没有更多了...</span>
 
-  ;  return <span>开始加载下一页</span>
-  };, [started, loading, haveMoreData])
+    return <span>开始加载下一页</span>
+  }, [started, loading, haveMoreData])
 
   return (
     <>

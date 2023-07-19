@@ -2,7 +2,6 @@ import { FC, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { Button, Typography } from "antd"
 import { MANAGE_INDEX_PATHNAME } from "@/router"
-import axios from "axios"
 
 const { Title, Paragraph } = Typography
 
@@ -13,15 +12,7 @@ const Home: FC = () => {
     fetch("/api/test")
       .then(res => res.json())
       .then(res => console.log(res))
-    // axios.get("/api/test").then(res => console.log(res));
   }, [])
-
-  // function clickHandler() {
-  //   // nav("/login");
-  //   nav({
-  //     pathname: "/login"
-  //   });
-  // }
 
   return (
     <div className="h-login flex flex-col justify-center items-center bg-gradient">
