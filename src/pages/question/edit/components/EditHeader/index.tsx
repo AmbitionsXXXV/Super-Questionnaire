@@ -1,10 +1,49 @@
-import type { FC } from "react"
-import { Button, Space, Typography } from "antd"
-import { LeftOutlined } from "@ant-design/icons"
+import type { ChangeEvent, FC } from "react"
+import { useState } from "react"
+import { Button, Input, Space, Typography } from "antd"
+import { EditOutlined, LeftOutlined } from "@ant-design/icons"
 import { useNavigate } from "react-router-dom"
 import EditToolbar from "../EditToolbar"
+import useGetPageInfo from "@/hooks/useGetPageInfo"
+import { useDispatch } from "react-redux"
+import { changePageTitle } from "@/store/modules/pageInfo"
 
 const { Title } = Typography
+
+// 显示和修改标题
+const TitleElem: FC = () => {
+  const { title } = useGetPageInfo()
+  const dispatch = useDispatch()
+  const [editSate, setEditState] = useState<boolean>(false)
+
+  function handleChange(event: ChangeEvent<HTMLInputElement>) {
+    const newTitle = event.target.value.trim()
+    if (!newTitle) return
+    dispatch(changePageTitle(newTitle))
+  }
+
+  if (editSate) {
+    return (
+      <Input
+        value={title}
+        onChange={handleChange}
+        onBlur={() => setEditState(false)}
+        onPressEnter={() => setEditState(false)}
+      />
+    )
+  }
+
+  return (
+    <Space>
+      <Title className="text-lg leading-none my-0">{title}</Title>
+      <Button
+        type="text"
+        icon={<EditOutlined />}
+        onClick={() => setEditState(true)}
+      />
+    </Space>
+  )
+}
 
 const EditHeader: FC = () => {
   const navigator = useNavigate()
@@ -21,7 +60,7 @@ const EditHeader: FC = () => {
             >
               返回
             </Button>
-            <Title className="text-lg leading-none my-0">问卷标题</Title>
+            <TitleElem />
           </Space>
         </div>
         <div className="flex-1 text-center">
