@@ -1,15 +1,15 @@
-import type { ChangeEvent, FC } from "react";
-import { useState } from "react";
-import { Button, Input, Space, Typography } from "antd";
-import { EditOutlined, LeftOutlined, LoadingOutlined } from "@ant-design/icons";
-import { useNavigate, useParams } from "react-router-dom";
-import EditToolbar from "../EditToolbar";
-import useGetPageInfo from "@/hooks/useGetPageInfo";
-import { useDispatch } from "react-redux";
-import { changePageTitle } from "@/store/modules/pageInfo";
-import useGetComponentInfo from "@/hooks/useGetComponentInfo";
-import { useRequest } from "ahooks";
-import { updateQuestionService } from "@/service/question";
+import type { ChangeEvent, FC } from "react"
+import { useState } from "react"
+import { Button, Input, Space, Typography } from "antd"
+import { EditOutlined, LeftOutlined, LoadingOutlined } from "@ant-design/icons"
+import { useNavigate, useParams } from "react-router-dom"
+import EditToolbar from "../EditToolbar"
+import useGetPageInfo from "@/hooks/useGetPageInfo"
+import { useDispatch } from "react-redux"
+import { changePageTitle } from "@/store/modules/pageInfo"
+import useGetComponentInfo from "@/hooks/useGetComponentInfo"
+import { useDebounceEffect, useKeyPress, useRequest } from "ahooks"
+import { updateQuestionService } from "@/service/question"
 
 const { Title } = Typography
 
@@ -51,17 +51,17 @@ const TitleElem: FC = () => {
 // 保存按钮
 const SaveButton: FC = () => {
   const { id } = useParams()
-  // 需要保存 pageI;nfo  componentList
+  // 需要保存 pageInfo  componentList
   const pageInfo = useGetPageInfo()
-  const { compo;nentList = [] } = useGetComponentInfo()
+  const { componentList = [] } = useGetComponentInfo()
 
   // 快捷键保存
-  u;seKeyPress(["ctrl.s", "meta.s"], (event: KeyboardEvent) => {
+  useKeyPress(["ctrl.s", "meta.s"], (event: KeyboardEvent) => {
     event.preventDefault()
-    if (!loadin;g) save()
+    if (!loading) save()
   })
 
-  const {; run:; save, loading } = useRequest(
+  const { run: save, loading } = useRequest(
     async () =>
       id && (await updateQuestionService(id, { ...pageInfo, componentList })),
     {
@@ -69,8 +69,17 @@ const SaveButton: FC = () => {
     }
   )
 
+  // 自定保存
+  useDebounceEffect(
+    () => {
+      save()
+    },
+    [componentList, pageInfo],
+    { wait: 1000 }
+  )
+
   return (
-   ; <Button
+    <Button
       onClick={save}
       disabled={loading}
       icon={loading ? <LoadingOutlined /> : null}
@@ -80,11 +89,11 @@ const SaveButton: FC = () => {
   )
 }
 
-const EditHe;ad;er: FC = () => {
+const EditHeader: FC = () => {
   const navigator = useNavigate()
 
   return (
-   ; <div className="bg-white border-b border-b-slate-200 px-0 py-3">
+    <div className="bg-white border-b border-b-slate-200 px-0 py-3">
       <div className="flex my-0 mx-6">
         <div className="flex-1">
           <Space>
