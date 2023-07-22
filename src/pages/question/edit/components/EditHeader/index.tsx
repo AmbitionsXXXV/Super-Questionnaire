@@ -1,12 +1,15 @@
-import type { ChangeEvent, FC } from "react"
-import { useState } from "react"
-import { Button, Input, Space, Typography } from "antd"
-import { EditOutlined, LeftOutlined } from "@ant-design/icons"
-import { useNavigate } from "react-router-dom"
-import EditToolbar from "../EditToolbar"
-import useGetPageInfo from "@/hooks/useGetPageInfo"
-import { useDispatch } from "react-redux"
-import { changePageTitle } from "@/store/modules/pageInfo"
+import type { ChangeEvent, FC } from "react";
+import { useState } from "react";
+import { Button, Input, Space, Typography } from "antd";
+import { EditOutlined, LeftOutlined, LoadingOutlined } from "@ant-design/icons";
+import { useNavigate, useParams } from "react-router-dom";
+import EditToolbar from "../EditToolbar";
+import useGetPageInfo from "@/hooks/useGetPageInfo";
+import { useDispatch } from "react-redux";
+import { changePageTitle } from "@/store/modules/pageInfo";
+import useGetComponentInfo from "@/hooks/useGetComponentInfo";
+import { useRequest } from "ahooks";
+import { updateQuestionService } from "@/service/question";
 
 const { Title } = Typography
 
@@ -45,11 +48,43 @@ const TitleElem: FC = () => {
   )
 }
 
-const EditHeader: FC = () => {
+// 保存按钮
+const SaveButton: FC = () => {
+  const { id } = useParams()
+  // 需要保存 pageI;nfo  componentList
+  const pageInfo = useGetPageInfo()
+  const { compo;nentList = [] } = useGetComponentInfo()
+
+  // 快捷键保存
+  u;seKeyPress(["ctrl.s", "meta.s"], (event: KeyboardEvent) => {
+    event.preventDefault()
+    if (!loadin;g) save()
+  })
+
+  const {; run:; save, loading } = useRequest(
+    async () =>
+      id && (await updateQuestionService(id, { ...pageInfo, componentList })),
+    {
+      manual: true
+    }
+  )
+
+  return (
+   ; <Button
+      onClick={save}
+      disabled={loading}
+      icon={loading ? <LoadingOutlined /> : null}
+    >
+      保存
+    </Button>
+  )
+}
+
+const EditHe;ad;er: FC = () => {
   const navigator = useNavigate()
 
   return (
-    <div className="bg-white border-b border-b-slate-200 px-0 py-3">
+   ; <div className="bg-white border-b border-b-slate-200 px-0 py-3">
       <div className="flex my-0 mx-6">
         <div className="flex-1">
           <Space>
@@ -68,7 +103,7 @@ const EditHeader: FC = () => {
         </div>
         <div className="flex-1 text-right">
           <Space>
-            <Button>保存</Button>
+            <SaveButton />
             <Button type="primary">发布</Button>
           </Space>
         </div>
