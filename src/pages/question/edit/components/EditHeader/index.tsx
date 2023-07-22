@@ -1,6 +1,6 @@
 import type { ChangeEvent, FC } from "react"
 import { useState } from "react"
-import { Button, Input, Space, Typography } from "antd"
+import { Button, Input, message, Space, Typography } from "antd"
 import { EditOutlined, LeftOutlined, LoadingOutlined } from "@ant-design/icons"
 import { useNavigate, useParams } from "react-router-dom"
 import EditToolbar from "../EditToolbar"
@@ -89,6 +89,43 @@ const SaveButton: FC = () => {
   )
 }
 
+// 发布按钮
+const PublishButton: FC = () => {
+  const { id } = useParams()
+  // 需要保存 pageInfo  componentList
+  const pageInfo = useGetPageInfo()
+  const navigate = useNavigate()
+  const { componentList = [] } = useGetComponentInfo()
+
+  const { run: publish, loading } = useRequest(
+    async () =>
+      id &&
+      (await updateQuestionService(id, {
+        ...pageInfo,
+        componentList,
+        isPublished: true
+      })),
+    {
+      manual: true,
+      onSuccess: () => {
+        message.success("问卷发布成功")
+        navigate("/question/stat/" + id) // 发布成功, 跳转到统计页面
+      }
+    }
+  )
+
+  return (
+    <Button
+      type="primary"
+      onClick={publish}
+      disabled={loading}
+      icon={loading ? <LoadingOutlined /> : null}
+    >
+      发布
+    </Button>
+  )
+}
+
 const EditHeader: FC = () => {
   const navigator = useNavigate()
 
@@ -113,7 +150,7 @@ const EditHeader: FC = () => {
         <div className="flex-1 text-right">
           <Space>
             <SaveButton />
-            <Button type="primary">发布</Button>
+            <PublishButton />
           </Space>
         </div>
       </div>
