@@ -1,15 +1,21 @@
 import type { FC } from "react"
+import { useState } from "react"
 import useLoadQuestionData from "@/hooks/useLoadQuestionData"
 import { Button, Result, Spin } from "antd"
 import useGetPageInfo from "@/hooks/useGetPageInfo"
 import { useNavigate } from "react-router-dom"
 import { useTitle } from "ahooks"
 import StatHeader from "@/pages/question/stat/components/StatHeader"
+import ComponentList from "@/pages/question/stat/components/ComponentList"
 
 const Stat: FC = () => {
   const navigate = useNavigate()
   const { loading } = useLoadQuestionData()
   const { title, isPublished } = useGetPageInfo()
+
+  // 状态提升 selectedId type
+  const [selectedComponentId, setSelectedComponentId] = useState("")
+  const [selectedComponentType, setSelectedComponentType] = useState("")
 
   // 修改标题
   useTitle(`问卷统计-${title}`)
@@ -42,12 +48,11 @@ const Stat: FC = () => {
     return (
       <>
         <div className="w-[350px] mr-6">
-          {/*<ComponentList*/}
-          {/*  selectedComponentId={selectedComponentId}*/}
-          {/*  setSelectedComponentId={setSelectedComponentId}*/}
-          {/*  setSelectedComponentType={setSelectedComponentType}*/}
-          {/*/>*/}
-          Left
+          <ComponentList
+            selectedComponentId={selectedComponentId}
+            setSelectedComponentId={setSelectedComponentId}
+            setSelectedComponentType={setSelectedComponentType}
+          />
         </div>
         <div className="flex-auto bg-white py-3 px-4">
           {/*<PageStat*/}
@@ -69,11 +74,11 @@ const Stat: FC = () => {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#f0f2f5]">
+    <div className="flex flex-col min-h-screen bg-[#f0f2f5] relative">
       <StatHeader />
-      <div className="flex-auto py-3 px-0">
+      <div className="flex-auto py-3 px-0 h-stat-head">
         {loading && LoadingELem}
-        {!loading && <div className="my-0 mx-6 flex">{genContentElem()}</div>}
+        {!loading && <div className="my-0 mx-6 flex h-full">{genContentElem()}</div>}
       </div>
     </div>
   )

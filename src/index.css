@@ -14,7 +14,22 @@
   height: calc(100vh - 80px);
 }
 
+.h-stat-head {
+  height: calc(100vh - 60px);
+}
+
 /* dnd-kit 拖拽排序 */
 div[role="button"] {
   outline: 0;
+}
+
+/* 隐藏滚动条 */
+body {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+/* Firefox 隐藏滚动条 */
+body::-webkit-scrollbar {
+  display: none;
 }

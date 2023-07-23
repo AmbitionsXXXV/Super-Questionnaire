@@ -85,7 +85,7 @@ const StatHeader: FC = () => {
   }, [id, isPublished])
 
   return (
-    <div className="bg-white border-0 border-b border-solid border-[#e8e8e8] py-3 px-0">
+    <div className="bg-white border-0 border-b border-solid border-[#e8e8e8] py-3 px-0 sticky top-0 z-50">
       <div className="flex mx-6 my-0">
         <div className="flex-1">
           <Space>
