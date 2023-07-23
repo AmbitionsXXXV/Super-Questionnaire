@@ -13,3 +13,8 @@
 .h-left {
   height: calc(100vh - 80px);
 }
+
+/* dnd-kit 拖拽排序 */
+div[role="button"] {
+  outline: 0;
+}

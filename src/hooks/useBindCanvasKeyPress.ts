@@ -8,11 +8,17 @@ import {
   selectPrevComponent
 } from "@/store/modules/components"
 
+// 判断 activeElem 是否合法
 function isActiveElementValid() {
   const activeElem = document.activeElement
 
-  // 光标没有 focus 到 input
+  // 没有增加 dnd-kit 之前
+  // if (activeElem === document.body) return true // 光标没有 focus 到 input
+
+  // 增加 dnd-kit 之后
   if (activeElem === document.body) return true
+
+  return !!activeElem?.matches('div[role="button"]')
 }
 
 function useBindCanvasKeyPress() {
