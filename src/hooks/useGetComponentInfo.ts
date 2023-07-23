@@ -4,7 +4,7 @@ import { useSelector } from "react-redux"
 
 function useGetComponentInfo() {
   const component = useSelector<StateType>(
-    state => state.components
+    state => state.components.present
   ) as ComponentsStateType
 
   const { componentList = [], selectedId, copiedComponent } = component

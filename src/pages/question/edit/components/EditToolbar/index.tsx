@@ -7,9 +7,12 @@ import {
   DownOutlined,
   EyeInvisibleOutlined,
   LockOutlined,
+  RedoOutlined,
+  UndoOutlined,
   UpOutlined
 } from "@ant-design/icons"
 import { useDispatch } from "react-redux"
+import { ActionCreators as UndoActionCreators } from "redux-undo"
 import {
   changeComponentHidden,
   copySelectedComponent,
@@ -65,11 +68,22 @@ const EditToolbox: FC = () => {
     dispatch(moveComponent({ oldIndex: selectedIndex, newIndex: selectedIndex + 1 }))
   }
 
+  // 撤销
+  function undo() {
+    dispatch(UndoActionCreators.undo())
+  }
+
+  // 重做
+  function redo() {
+    dispatch(UndoActionCreators.redo())
+  }
+
   return (
     <Space>
       <Tooltip title="删除">
         <Button shape="circle" icon={<DeleteOutlined />} onClick={handleDelete} />
       </Tooltip>
+
       <Tooltip title="隐藏">
         <Button
           shape="circle"
@@ -77,6 +91,7 @@ const EditToolbox: FC = () => {
           onClick={handleHidden}
         />
       </Tooltip>
+
       <Tooltip title="锁定">
         <Button
           shape="circle"
@@ -85,9 +100,11 @@ const EditToolbox: FC = () => {
           onClick={handleLock}
         />
       </Tooltip>
+
       <Tooltip title="复制">
         <Button shape="circle" icon={<CopyOutlined />} onClick={handleCopy} />
       </Tooltip>
+
       <Tooltip title="粘贴">
         <Button
           shape="circle"
@@ -96,6 +113,7 @@ const EditToolbox: FC = () => {
           onClick={handlePaste}
         />
       </Tooltip>
+
       <Tooltip title="上移">
         <Button
           shape="circle"
@@ -104,6 +122,7 @@ const EditToolbox: FC = () => {
           icon={<UpOutlined />}
         />
       </Tooltip>
+
       <Tooltip title="下移">
         <Button
           shape="circle"
@@ -111,6 +130,14 @@ const EditToolbox: FC = () => {
           onClick={moveDown}
           icon={<DownOutlined />}
         />
+      </Tooltip>
+
+      <Tooltip title="撤销">
+        <Button shape="circle" onClick={undo} icon={<UndoOutlined />} />
+      </Tooltip>
+
+      <Tooltip title="重做">
+        <Button shape="circle" onClick={redo} icon={<RedoOutlined />} />
       </Tooltip>
     </Space>
   )
