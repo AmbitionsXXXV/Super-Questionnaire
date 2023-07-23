@@ -3,12 +3,15 @@ import {
   changeComponentHidden,
   changeComponentTitle,
   changeSelectedId,
+  moveComponent,
   toggleComponentLocked
 } from "@/store/modules/components"
 import { Button, Input, message, Space } from "antd"
 import { ChangeEvent, type FC, useState } from "react"
 import { useDispatch } from "react-redux"
 import { EyeInvisibleOutlined, LockOutlined } from "@ant-design/icons"
+import SortableContainer from "@/components/SortableContainer"
+import SortableItem from "@/components/SortableItem"
 
 const Layers: FC = () => {
   const dispatch = useDispatch()
@@ -53,56 +56,66 @@ const Layers: FC = () => {
     dispatch(toggleComponentLocked({ fe_id }))
   }
 
+  // SortableContainer 组件的 items 属性，需要每个item 都有id
+  const componentListWithId = componentList.map(c => ({ ...c, id: c.fe_id }))
+
+  // 拖拽排序结束
+  function handleDragEnd(oldIndex: number, newIndex: number) {
+    dispatch(moveComponent({ oldIndex, newIndex }))
+  }
+
   return (
-    <>
+    <SortableContainer items={componentListWithId} onDragEnd={handleDragEnd}>
       {componentList.map(({ fe_id, title, isHidden, isLocked }) => {
         return (
-          <div key={fe_id} className="py-2 border-b border-gray-200 flex group">
-            <div
-              onClick={() => handleTitleClick(fe_id)}
-              className={`flex-auto leading-loose ${
-                fe_id === selectedId ? "text-blue-500" : ""
-              }`}
-            >
-              {fe_id !== changingTitleId ? (
-                title
-              ) : (
-                <Input
-                  value={title}
-                  onChange={changeTitle}
-                  onBlur={() => setChangingTitleId("")}
-                  onPressEnter={() => setChangingTitleId("")}
-                />
-              )}
+          <SortableItem id={fe_id} key={fe_id}>
+            <div className="py-2 border-b border-gray-200 flex group">
+              <div
+                onClick={() => handleTitleClick(fe_id)}
+                className={`flex-auto leading-loose ${
+                  fe_id === selectedId ? "text-blue-500" : ""
+                }`}
+              >
+                {fe_id !== changingTitleId ? (
+                  title
+                ) : (
+                  <Input
+                    value={title}
+                    onChange={changeTitle}
+                    onBlur={() => setChangingTitleId("")}
+                    onPressEnter={() => setChangingTitleId("")}
+                  />
+                )}
+              </div>
+              <div className="w-14 text-end">
+                <Space>
+                  <Button
+                    size="small"
+                    shape="circle"
+                    icon={<EyeInvisibleOutlined />}
+                    type={isHidden ? "primary" : "text"}
+                    onClick={() => changeHidden(fe_id, !isHidden)}
+                    className={`${
+                      !isHidden ? "opacity-20 group-hover:opacity-100" : ""
+                    }`}
+                  />
+                  <Button
+                    size="small"
+                    shape="circle"
+                    icon={<LockOutlined />}
+                    type={isLocked ? "primary" : "text"}
+                    onClick={() => changeLocked(fe_id)}
+                    className={`${
+                      !isLocked ? "opacity-20 group-hover:opacity-100" : ""
+                    }`}
+                  />
+                </Space>
+              </div>
             </div>
-            <div className="w-14 text-end">
-              <Space>
-                <Button
-                  size="small"
-                  shape="circle"
-                  icon={<EyeInvisibleOutlined />}
-                  type={isHidden ? "primary" : "text"}
-                  onClick={() => changeHidden(fe_id, !isHidden)}
-                  className={`${
-                    !isHidden ? "opacity-20 group-hover:opacity-100" : ""
-                  }`}
-                />
-                <Button
-                  size="small"
-                  shape="circle"
-                  icon={<LockOutlined />}
-                  type={isLocked ? "primary" : "text"}
-                  onClick={() => changeLocked(fe_id)}
-                  className={`${
-                    !isLocked ? "opacity-20 group-hover:opacity-100" : ""
-                  }`}
-                />
-              </Space>
-            </div>
-          </div>
+          </SortableItem>
         )
       })}
-    </>
+    </SortableContainer>
   )
 }
 

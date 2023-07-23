@@ -4,6 +4,7 @@ import { ComponentPropsType } from "@/components/QuestionComponents"
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { getNextSelectedId, insertNewComponent } from "@/store/utils"
 import { nanoid } from "nanoid"
+import { arrayMove } from "@dnd-kit/sortable"
 
 export type ComponentsInfoType = {
   fe_id: string // Todo
@@ -174,12 +175,26 @@ export const componentsSlice = createSlice({
         const curComp = draft.componentList.find(c => c.fe_id === fe_id)
         if (curComp) curComp.title = title
       }
+    ),
+
+    // 移动组件位置
+    moveComponent: produce(
+      (
+        draft: ComponentsStateType,
+        { payload }: PayloadAction<{ oldIndex: number; newIndex: number }>
+      ) => {
+        const { oldIndex, newIndex } = payload
+        const { componentList: curComponentList } = draft
+
+        draft.componentList = arrayMove(curComponentList, oldIndex, newIndex)
+      }
     )
   }
 })
 
 export const {
   addComponent,
+  moveComponent,
   resetComponents,
   changeSelectedId,
   selectPrevComponent,
