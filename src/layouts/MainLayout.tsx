@@ -22,10 +22,11 @@ const MainLayout: FC = () => {
           <UserInfo />
         </div>
       </Header>
+
       <Layout className="l-main">
         <Content>
           {waitingUserData ? (
-            <div className="h-full w-full text-center mt-15 flex justify-center items-center">
+            <div className="h-screen w-full mt-15 flex justify-center items-center">
               <Spin />
             </div>
           ) : (
@@ -33,6 +34,7 @@ const MainLayout: FC = () => {
           )}
         </Content>
       </Layout>
+
       <Footer className="text-center bg-slate-100 border-t-2 border-gray-200">
         超级问卷 &copy;.Created by Etcetera
       </Footer>

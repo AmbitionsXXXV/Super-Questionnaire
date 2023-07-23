@@ -2,17 +2,18 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import produce from "immer"
 
 export type PageInfoType = {
-  title: string
-  desc?: string
   js?: string
   css?: string
+  desc?: string
+  title: string
+  isPublished?: boolean
 }
 
 const INIT_STATE: PageInfoType = {
-  title: "",
-  desc: "",
   js: "",
-  css: ""
+  css: "",
+  desc: "",
+  title: ""
 }
 
 const pageInfoSlice = createSlice({

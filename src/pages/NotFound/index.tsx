@@ -4,15 +4,15 @@ import { useNavigate } from "react-router-dom"
 import type { FC } from "react"
 
 const NotFound: FC = () => {
-  const navigator = useNavigate()
+  const navigate = useNavigate()
 
   return (
     <Result
-      status="404"
       title="404"
+      status="404"
       subTitle="Sorry, the page you visited does not exist."
       extra={
-        <Button type="primary" onClick={() => navigator(MANAGE_INDEX_PATHNAME)}>
+        <Button type="primary" onClick={() => navigate(MANAGE_INDEX_PATHNAME)}>
           返回首页
         </Button>
       }

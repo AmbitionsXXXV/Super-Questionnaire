@@ -3,10 +3,15 @@ import useLoadQuestionData from "@/hooks/useLoadQuestionData"
 import { useDispatch } from "react-redux"
 import { changeSelectedId } from "@/store/modules/components"
 import { EditCanvas, EditHeader, LeftPanel, RightPanel } from "./components"
+import useGetPageInfo from "@/hooks/useGetPageInfo"
+import { useTitle } from "ahooks"
 
 const Edit: FC = () => {
   const dispatch = useDispatch()
   const { loading } = useLoadQuestionData()
+  const { title } = useGetPageInfo()
+
+  useTitle(`问卷编辑-${title}`)
 
   function clearSelectedId() {
     dispatch(changeSelectedId(""))
