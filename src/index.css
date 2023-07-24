@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+p {
+  margin: 0;
+}
+
 .h-login {
   height: calc(100vh - 64px - 65px);
 }

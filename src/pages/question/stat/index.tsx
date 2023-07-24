@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom"
 import { useTitle } from "ahooks"
 import StatHeader from "@/pages/question/stat/components/StatHeader"
 import ComponentList from "@/pages/question/stat/components/ComponentList"
+import PageStat from "@/pages/question/stat/components/PageStat"
+import ChartStat from "@/pages/question/stat/components/ChartStat"
 
 const Stat: FC = () => {
   const navigate = useNavigate()
@@ -47,27 +49,25 @@ const Stat: FC = () => {
 
     return (
       <>
-        <div className="w-[350px] mr-6">
+        <div className="w-[320px] mr-6">
           <ComponentList
             selectedComponentId={selectedComponentId}
             setSelectedComponentId={setSelectedComponentId}
             setSelectedComponentType={setSelectedComponentType}
           />
         </div>
-        <div className="flex-auto bg-white py-3 px-4">
-          {/*<PageStat*/}
-          {/*  selectedComponentId={selectedComponentId}*/}
-          {/*  setSelectedComponentId={setSelectedComponentId}*/}
-          {/*  setSelectedComponentType={setSelectedComponentType}*/}
-          {/*/>*/}
-          Main
+        <div className="flex-1 bg-white py-3 px-4">
+          <PageStat
+            selectedComponentId={selectedComponentId}
+            setSelectedComponentId={setSelectedComponentId}
+            setSelectedComponentType={setSelectedComponentType}
+          />
         </div>
         <div className="w-[400px] ml-6 bg-white overflow-hidden py-3 px-4">
-          {/*<ChartStat*/}
-          {/*  selectedComponentId={selectedComponentId}*/}
-          {/*  selectedComponentType={selectedComponentType}*/}
-          {/*/>*/}
-          Right
+          <ChartStat
+            selectedComponentId={selectedComponentId}
+            selectedComponentType={selectedComponentType}
+          />
         </div>
       </>
     )
