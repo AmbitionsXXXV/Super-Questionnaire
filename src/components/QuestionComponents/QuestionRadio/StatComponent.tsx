@@ -23,7 +23,7 @@ const StatComponent: FC<QuestionRadioStatPropsType> = ({ stat = [] }) => {
         category="count"
         showLabel={true}
         valueFormatter={valueFormatter}
-        colors={["indigo", "rose", "cyan", "amber"]}
+        colors={["fuchsia", "cyan", "teal"]}
       />
     </Card>
   )

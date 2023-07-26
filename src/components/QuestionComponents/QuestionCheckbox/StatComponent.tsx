@@ -5,7 +5,13 @@ import { QuestionCheckboxStatPropsType } from "./interface"
 const StatComponent: FC<QuestionCheckboxStatPropsType> = ({ stat }) => {
   return (
     <Card>
-      <BarChart data={stat} index="name" categories={["count"]} className="mr-4" />
+      <BarChart
+        data={stat}
+        index="name"
+        className="mr-4"
+        colors={["teal"]}
+        categories={["count"]}
+      />
     </Card>
   )
 }
